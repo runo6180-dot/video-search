@@ -117,15 +117,15 @@ button:hover {
   flex: 2;
 }
 
-.result-item + .result-item {
-  border-left: 1px solid #e5e5e5;
-  padding-left: 16px;   /* ← yu が戻したい余白、これでOK */
-}
-
-/* 右余白はチャンネル側だけにする */
-.result-item:last-child .result-value {
+.result-item {
+  padding-left: 16px;
   padding-right: 16px;
 }
+
+.result-item + .result-item {
+  border-left: 1px solid #e5e5e5;
+}
+
 
 /* キー側は中央揃えだけ */
 .result-item:first-child .result-value {
