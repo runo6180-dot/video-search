@@ -6,8 +6,10 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  width: 100%;
+  max-width: 600px; /* PCでは600pxまで広がる */
   margin: auto;
+  padding: 0 16px; /* スマホで左右に余白を確保 */
 }
 
 h1 {
