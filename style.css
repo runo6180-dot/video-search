@@ -97,7 +97,7 @@ button:hover {
 /* キー＆チャンネルの横並び行 */
 .result-row-horizontal {
   display: flex;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   padding-top: 12px;
   border-top: 1px solid #e5e5e5;
 }
@@ -119,8 +119,6 @@ button:hover {
 }
 
 
-
-
 /* チャンネル側（左16 / 右0） */
 .result-item:last-child {
   flex: 2;
@@ -139,11 +137,6 @@ button:hover {
   font-weight: 700;
   align-self: center;
 }
-
-
-
-
-
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
