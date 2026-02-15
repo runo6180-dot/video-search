@@ -1,51 +1,52 @@
 const API_URL = `https://script.google.com/macros/s/AKfycbyHe4gC1D8F8REOY1EBLpntB7ISxqT5ttdH83_ZA4l1cwQq0yUt3rBRJWpqcM4NoKTz/exec?id=${videoID}`;
 
-document.getElementById("searchBtn").addEventListener("click", async () => {
-  const url = document.getElementById("urlInput").value.trim();
-  const resultDiv = document.getElementById("result");
+document.getElementById("searchBtn").addEventListener("click", () => {
+  const input = document.getElementById("urlInput").value.trim();
 
-  if (!url) {
-    resultDiv.innerHTML = "URLを入力してね";
+  // YouTube ID を抽出
+  const videoID = extractYouTubeID(input);
+
+  if (!videoID) {
+    alert("正しいYouTube URL または 動画IDを入力してね");
     return;
   }
 
-  resultDiv.innerHTML = "検索中…";
+  // GAS の URL（バッククォートで囲む）
+  const API_URL = `https://script.google.com/macros/s/AKfycbyHe4gC1D8F8REOY1EBLpntB7ISxqT5ttdH83_ZA4l1cwQq0yUt3rBRJWpqcM4NoKTz/exec?id=${videoID}`;
 
-  try {
-    const res = await fetch(API_URL + "?url=" + encodeURIComponent(url));
-    const data = await res.json();
+  // デバッグ
+  console.log("送信するID:", videoID);
+  console.log("アクセスURL:", API_URL);
 
-    if (data.error) {
-      resultDiv.innerHTML = "見つかりませんでした";
-      return;
-    }
+  // GAS に問い合わせ
+  fetch(API_URL)
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        document.getElementById("result").innerHTML = `<p>見つかりませんでした</p>`;
+        return;
+      }
 
-  resultDiv.innerHTML = `
-    <div class="result-card">
-  
-      <div class="result-row">
-        <span class="result-label">タイトル</span>
-        <span class="result-value">${data.title}</span>
-      </div>
-  
-      <div class="result-row-horizontal">
-        <div class="result-item">
-          <span class="result-label">キー</span>
-          <span class="result-value">${data.info}</span>
+      // 結果表示（あなたのUIに合わせて）
+      document.getElementById("result").innerHTML = `
+        <div class="result-card">
+          <div class="result-row">
+            <div class="result-label">チャンネル</div>
+            <div class="result-value">${data.channel}</div>
+          </div>
+          <div class="result-row">
+            <div class="result-label">タイトル</div>
+            <div class="result-value">${data.title}</div>
+          </div>
+          <div class="result-row">
+            <div class="result-label">情報</div>
+            <div class="result-value">${data.info}</div>
+          </div>
         </div>
-  
-        <div class="result-item">
-          <span class="result-label">チャンネル</span>
-          <span class="result-value">${data.channel}</span>
-        </div>
-      </div>
-  
-    </div>
-  `;
-
-
-
-  } catch (e) {
-    resultDiv.innerHTML = "エラーが発生しました";
-  }
+      `;
+    })
+    .catch(err => {
+      console.error(err);
+      alert("エラーが発生しました");
+    });
 });
