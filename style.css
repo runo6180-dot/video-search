@@ -7,9 +7,9 @@ body {
 
 .container {
   width: 100%;
-  max-width: 600px; /* PCでは600pxまで広がる */
+  max-width: 600px;
   margin: auto;
-  padding: 0 16px; /* スマホで左右に余白を確保 */
+  padding: 0; /* ← 左右の余白を消す */
 }
 
 h1 {
@@ -52,9 +52,12 @@ button {
 
 input, button {
   width: 100%;
-  box-sizing: border-box; /* ← これが超重要 */
+  box-sizing: border-box;
   margin: 0 0 12px 0;
+  padding-left: 16px;
+  padding-right: 16px;
 }
+
 
 
 button:hover {
