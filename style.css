@@ -1,12 +1,9 @@
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     overflow-x: hidden;
+    box-sizing: border-box;
     font-family: "Helvetica Neue", Arial, sans-serif;
     background: #f0f2f5;
     color: #333;
@@ -17,6 +14,7 @@ html, body {
     max-width: 600px;
     margin: 0 auto;
     padding: 0 16px;
+    box-sizing: border-box;
 }
 
 h1 {
@@ -55,7 +53,6 @@ button {
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s;
-  display: block;
 }
 
 button:hover {
@@ -78,19 +75,18 @@ button:hover {
 }
 
 .result-label {
-  height: 18px;      /* ← ラベル行の高さを左右で統一 */
-  display: flex;
-  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #7a7a7a;
+  margin-bottom: 4px;
 }
 
 .result-value {
-  height: 32px;      /* ← 値行の高さを左右で統一（フォント30pxに合わせる） */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  line-height: 1.4;
 }
-
 
 /* キー＆チャンネル横並び */
 .result-row-horizontal {
@@ -98,38 +94,39 @@ button:hover {
   align-items: center;
   padding-top: 12px;
   border-top: 1px solid #e5e5e5;
-  margin-bottom: 0;
+  margin-bottom: 0;   /* ← タイトルの下と揃えるため余白ゼロ */
 }
 
 /* 共通カラム */
 .result-item {
-  min-height: 70px;  
   display: flex;
   flex-direction: column;
-  align-items: flex-start;   /* ラベル左寄せ */
+  margin-bottom: 16px;
 }
-
 
 /* ===== キー側 ===== */
 .result-item:first-child {
-  flex: 1.3;   /* ← ★ここを修正（1.15 → 1.3） */
+  flex: 1.15;
   padding-right: 0;
+  /* justify-content: center; ← 中央揃え削除 */
 }
 
+/* ラベルは左寄せのまま */
 .result-item:first-child .result-label {
   text-align: left;
 }
 
+/* 値はタイトルの真下に自然に配置 */
 .result-item:first-child .result-value {
   font-size: 30px;
   font-weight: 700;
-  text-align: center;   /* ← 中央揃え */
+  text-align: center;
   width: 100%;
 }
 
 /* ===== チャンネル側 ===== */
 .result-item:last-child {
-  flex: 1.8;   /* ← ★ここも調整（2 → 1.8） */
+  flex: 2;
   padding-left: 16px;
 }
 
@@ -137,12 +134,6 @@ button:hover {
 .result-item + .result-item {
   border-left: 1px solid #e5e5e5;
 }
-
-.result-item .result-value {
-  text-align: center;
-  width: 100%;
-}
-
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
