@@ -66,6 +66,11 @@ html, body {
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   margin-top: 25px;
   animation: fadeIn 0.25s ease-out;
+
+  /* ★ スマホで見切れないための必須 */
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* 表ヘッダー */
@@ -76,11 +81,17 @@ html, body {
   border-bottom: 1px solid #e5e5e5;
   padding-bottom: 8px;
   margin-bottom: 12px;
+
+  /* ★ flex 子要素がはみ出さない */
+  min-width: 0;
 }
 
 .table-col {
   flex: 1;
   font-size: 14px;
+
+  /* ★ はみ出し防止 */
+  min-width: 0;
 }
 
 /* 行 */
@@ -88,12 +99,19 @@ html, body {
   display: flex;
   padding: 10px 0;
   border-bottom: 1px solid #efefef;
+
+  /* ★ はみ出し防止 */
+  min-width: 0;
 }
 
 .table-col-value {
   flex: 1;
   font-size: 16px;
   color: #2c3e50;
+
+  /* ★ 長い文字でも絶対に見切れない */
+  min-width: 0;
+  overflow-wrap: break-word;
   word-break: break-word;
 }
 
