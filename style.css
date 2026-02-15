@@ -126,8 +126,8 @@ button:hover {
 /* 右側（チャンネル）だけ縦線＋左余白 */
 .result-item + .result-item {
   border-left: 1px solid #e5e5e5;
-  padding-left: 16px;
 }
+
 
 /* キーだけ中央寄せ＆大きくする（ここが最優先で効くように一番後ろ） */
 .result-item:first-child .result-value {
