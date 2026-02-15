@@ -97,7 +97,6 @@ button:hover {
 /* キー＆チャンネルの横並び行 */
 .result-row-horizontal {
   display: flex;
-  gap: 24px;
   margin-bottom: 16px;
   padding-top: 12px;
   border-top: 1px solid #e5e5e5;
