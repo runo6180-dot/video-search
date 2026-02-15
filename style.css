@@ -33,15 +33,6 @@ button {
   border-radius: 6px;
 }
 
-#result {
-  margin-top: 20px;
-  padding: 15px;
-  background: white;
-  border-radius: 6px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  line-height: 1.6;
-}
-
 .result-card {
   background: #ffffff;
   border-radius: 12px;
