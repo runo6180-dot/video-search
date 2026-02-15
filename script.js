@@ -1,5 +1,3 @@
-const API_URL = `https://script.google.com/macros/s/AKfycbyHe4gC1D8F8REOY1EBLpntB7ISxqT5ttdH83_ZA4l1cwQq0yUt3rBRJWpqcM4NoKTz/exec?id=${videoID}`;
-
 document.getElementById("searchBtn").addEventListener("click", () => {
   const input = document.getElementById("urlInput").value.trim();
 
@@ -11,14 +9,12 @@ document.getElementById("searchBtn").addEventListener("click", () => {
     return;
   }
 
-  // GAS の URL（バッククォートで囲む）
+  // ← ここで初めて API_URL を作る
   const API_URL = `https://script.google.com/macros/s/AKfycbyHe4gC1D8F8REOY1EBLpntB7ISxqT5ttdH83_ZA4l1cwQq0yUt3rBRJWpqcM4NoKTz/exec?id=${videoID}`;
 
-  // デバッグ
   console.log("送信するID:", videoID);
   console.log("アクセスURL:", API_URL);
 
-  // GAS に問い合わせ
   fetch(API_URL)
     .then(res => res.json())
     .then(data => {
@@ -27,7 +23,6 @@ document.getElementById("searchBtn").addEventListener("click", () => {
         return;
       }
 
-      // 結果表示（あなたのUIに合わせて）
       document.getElementById("result").innerHTML = `
         <div class="result-card">
           <div class="result-row">
