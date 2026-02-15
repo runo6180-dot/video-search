@@ -52,23 +52,12 @@ button:hover {
   background: #3b7ac4;
 }
 
-.result-card {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  margin-top: 25px;
-  animation: fadeIn 0.25s ease-out;
-}
-
-/* 1行の情報ブロック */
 .result-row {
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
 }
 
-/* ラベル（タイトル / キー） */
 .result-label {
   font-size: 13px;
   font-weight: 700;
@@ -76,18 +65,11 @@ button:hover {
   margin-bottom: 4px;
 }
 
-/* 値（曲名 / キー） */
 .result-value {
-  font-size: 18px;
+  font-size: 18px;   /* ← タイトルとキーを同じ大きさに */
   font-weight: 600;
   color: #2c3e50;
   line-height: 1.4;
-}
-
-/* キーだけ少し強調（大きすぎない） */
-.key-value {
-  font-size: 22px;
-  color: #4a90e2;
 }
 
 @keyframes fadeIn {
