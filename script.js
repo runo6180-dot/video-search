@@ -23,23 +23,32 @@ document.getElementById("searchBtn").addEventListener("click", () => {
         return;
       }
 
-      document.getElementById("result").innerHTML = `
-        <div class="result-card">
-          <div class="result-row">
-            <div class="result-label">チャンネル</div>
-            <div class="result-value">${data.channel}</div>
-          </div>
-          <div class="result-row">
-            <div class="result-label">タイトル</div>
-            <div class="result-value">${data.title}</div>
-          </div>
-          <div class="result-row">
-            <div class="result-label">キー</div>
-            <div class="result-value">${data.info}</div>
-          </div>
+  document.getElementById("result").innerHTML = `
+    <div class="result-card">
+  
+      <!-- タイトル（縦） -->
+      <div class="result-row">
+        <div class="result-label">タイトル</div>
+        <div class="result-value">${data.title}</div>
+      </div>
+  
+      <!-- キー & チャンネル（横並び） -->
+      <div class="result-row-horizontal">
+  
+        <div class="result-item">
+          <div class="result-label">キー</div>
+          <div class="result-value">${data.info}</div>
         </div>
-      `;
-    })
+  
+        <div class="result-item">
+          <div class="result-label">チャンネル</div>
+          <div class="result-value">${data.channel}</div>
+        </div>
+  
+      </div>
+  
+    </div>
+  `;
     .catch(err => {
       console.error(err);
       alert("エラーが発生しました");
