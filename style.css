@@ -99,11 +99,10 @@ button:hover {
 
 .result-row-horizontal {
   display: flex;
-  justify-content: space-between;
   gap: 24px;
   margin-bottom: 16px;
   padding-top: 12px;
-  border-top: 1px solid #e5e5e5; /* ← 画像みたいな区切り線 */
+  border-top: 1px solid #e5e5e5;
 }
 
 .result-item {
@@ -120,15 +119,14 @@ button:hover {
 }
 
 .result-item .result-value {
-  text-align: left; /* ← キーが左に寄りすぎる問題を解決 */
+  text-align: left;
 }
 
 .result-item + .result-item {
-  border-left: 1px solid #e5e5e5; /* 縦の区切り線 */
-  padding-left: 16px; /* 線から少し余白を作る */
+  border-left: 1px solid #e5e5e5;
+  padding-left: 16px;
 }
 
-/* キーだけ中央寄せ＆大きくする */
 .result-item:first-child .result-value {
   font-size: 30px;
   font-weight: 700;
