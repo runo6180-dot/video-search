@@ -129,7 +129,8 @@ html, body {
 
 @media (max-width: 480px) {
   .page-shell {
-    padding: 0 8px; /* ← 16px → 8px にするだけで見切れが消える */
+    padding: 0 6px;
   }
 }
+
 
