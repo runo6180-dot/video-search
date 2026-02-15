@@ -20,11 +20,11 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
       return;
     }
 
-    resultDiv.innerHTML = `
-      <h2>${data.title}</h2>
-      <p>${data.info}</p>
-      <small>${data.sheetName}（${data.row}行目）</small>
-    `;
+  resultDiv.innerHTML = `
+    <h2 class="title">タイトル：${data.title}</h2>
+    <p class="key">キー：${data.info}</p>
+  `;
+
   } catch (e) {
     resultDiv.innerHTML = "エラーが発生しました";
   }
