@@ -117,7 +117,7 @@ button:hover {
 .result-item:first-child .result-value {
   font-size: 30px;
   font-weight: 700;
-  text-align: left;   /* ← 左寄せで自然な縦流れ */
+  text-align: left;
   width: 100%;
 }
 
