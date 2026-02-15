@@ -131,9 +131,10 @@ button:hover {
 .result-item:first-child .result-value {
   font-size: 30px;
   font-weight: 700;
-  text-align: center;
-  padding-left: 8px;
+  display: flex;
+  justify-content: center; /* ← これでどの環境でも中央 */
 }
+
 
 
 @keyframes fadeIn {
