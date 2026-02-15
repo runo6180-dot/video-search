@@ -104,8 +104,8 @@ button:hover {
 .result-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: center;   /* ← 中身を縦中央に揃える */
+  min-height: 70px;          /* ← 高さを揃えるための絶対条件 */
 }
 
 /* ===== キー側 ===== */
