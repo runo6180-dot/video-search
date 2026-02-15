@@ -9,7 +9,6 @@ document.getElementById("searchBtn").addEventListener("click", () => {
     return;
   }
 
-  // ← ここで初めて API_URL を作る（これが正解）
   const API_URL = `https://script.google.com/macros/s/AKfycbyHe4gC1D8F8REOY1EBLpntB7ISxqT5ttdH83_ZA4l1cwQq0yUt3rBRJWpqcM4NoKTz/exec?id=${videoID}`;
 
   console.log("送信するID:", videoID);
@@ -23,32 +22,33 @@ document.getElementById("searchBtn").addEventListener("click", () => {
         return;
       }
 
-  document.getElementById("result").innerHTML = `
-    <div class="result-card">
-  
-      <!-- タイトル（縦） -->
-      <div class="result-row">
-        <div class="result-label">タイトル</div>
-        <div class="result-value">${data.title}</div>
-      </div>
-  
-      <!-- キー & チャンネル（横並び） -->
-      <div class="result-row-horizontal">
-  
-        <div class="result-item">
-          <div class="result-label">キー</div>
-          <div class="result-value">${data.info}</div>
+      document.getElementById("result").innerHTML = `
+        <div class="result-card">
+
+          <!-- タイトル（縦） -->
+          <div class="result-row">
+            <div class="result-label">タイトル</div>
+            <div class="result-value">${data.title}</div>
+          </div>
+
+          <!-- キー & チャンネル（横並び） -->
+          <div class="result-row-horizontal">
+
+            <div class="result-item">
+              <div class="result-label">キー</div>
+              <div class="result-value">${data.info}</div>
+            </div>
+
+            <div class="result-item">
+              <div class="result-label">チャンネル</div>
+              <div class="result-value">${data.channel}</div>
+            </div>
+
+          </div>
+
         </div>
-  
-        <div class="result-item">
-          <div class="result-label">チャンネル</div>
-          <div class="result-value">${data.channel}</div>
-        </div>
-  
-      </div>
-  
-    </div>
-  `;
+      `;
+    })  // ← これが抜けてた
     .catch(err => {
       console.error(err);
       alert("エラーが発生しました");
@@ -56,7 +56,6 @@ document.getElementById("searchBtn").addEventListener("click", () => {
 });
 
 function extractYouTubeID(input) {
-  // すでにIDだけの場合
   if (/^[a-zA-Z0-9_-]{11}$/.test(input)) {
     return input;
   }
