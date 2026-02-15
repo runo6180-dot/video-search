@@ -61,15 +61,35 @@ button:hover {
   animation: fadeIn 0.25s ease-out;
 }
 
-.result-title {
-  font-size: 19px;
-  font-weight: 600;
-  margin-bottom: 14px;
-  color: #2c3e50;
+/* ▼ ラベル（タイトル / キーの見出し） */
+.result-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #7a7a7a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
 }
 
+/* ▼ タイトルの本文 */
+.result-title-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+
+/* ▼ 区切り線 */
+.result-divider {
+  height: 1px;
+  background: #eee;
+  margin: 14px 0;
+}
+
+/* ▼ キーの本文（大きく強調） */
 .result-key {
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 700;
   color: #4a90e2;
   margin-top: 8px;
