@@ -52,6 +52,16 @@ button:hover {
   background: #3b7ac4;
 }
 
+.result-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  margin-top: 25px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+
 .result-row {
   display: flex;
   flex-direction: column;
