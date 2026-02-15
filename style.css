@@ -78,13 +78,13 @@ button:hover {
 }
 
 .result-label {
-  height: 20px;   /* ← ラベル行の高さを固定 */
+  height: 18px;      /* ← ラベル行の高さを左右で統一 */
   display: flex;
   align-items: center;
 }
 
 .result-value {
-  height: 32px;   /* ← 値行の高さを固定（フォント30pxに合わせる） */
+  height: 32px;      /* ← 値行の高さを左右で統一（フォント30pxに合わせる） */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,12 +103,12 @@ button:hover {
 
 /* 共通カラム */
 .result-item {
+  min-height: 70px;  
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;  /* ← ラベルと値の縦位置を揃える */
-  align-items: flex-start;      /* ← ラベルを左寄せに固定 */
-  min-height: 70px;             /* ← ブロックの高さを揃える */
+  align-items: flex-start;   /* ラベル左寄せ */
 }
+
 
 /* ===== キー側 ===== */
 .result-item:first-child {
