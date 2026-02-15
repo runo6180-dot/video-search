@@ -106,24 +106,28 @@ button:hover {
 .result-item {
   display: flex;
   flex-direction: column;
-  padding-left: 16px;   /* ← キー側にも入る */
-  padding-right: 16px;  /* ← キー側にも入る */
 }
-/* 比率：キー 1、チャンネル 2 */
+
+/* キー側（左0 / 右16） */
 .result-item:first-child {
   flex: 1;
+  padding-left: 0;
+  padding-right: 16px;
 }
 
+/* チャンネル側（左16 / 右0） */
 .result-item:last-child {
   flex: 2;
+  padding-left: 16px;
+  padding-right: 0;
 }
 
+/* チャンネル側だけ縦線 */
 .result-item + .result-item {
   border-left: 1px solid #e5e5e5;
 }
 
-
-/* キー側は中央揃えだけ */
+/* キー側の中央揃え */
 .result-item:first-child .result-value {
   font-size: 30px;
   font-weight: 700;
