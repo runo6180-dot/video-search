@@ -42,8 +42,24 @@ button {
   line-height: 1.6;
 }
 
-.key {
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 10px;
+.result-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-top: 20px;
+}
+
+.result-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.result-key {
+  font-size: 28px;
+  font-weight: 700;
+  color: #4a90e2;
+  margin-top: 5px;
 }
