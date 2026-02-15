@@ -120,6 +120,7 @@ button:hover {
 
 .result-item .result-value {
   text-align: left;
+  padding-right: 16px;
 }
 
 .result-item + .result-item {
