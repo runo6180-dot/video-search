@@ -90,6 +90,7 @@ button:hover {
 /* キー＆チャンネル横並び */
 .result-row-horizontal {
   display: flex;
+  align-items: center;
   padding-top: 12px;
   border-top: 1px solid #e5e5e5;
   margin-bottom: 0;   /* ← タイトルの下と揃えるため余白ゼロ */
