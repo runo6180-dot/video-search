@@ -24,6 +24,11 @@ html, body {
 }
 
 /* 入力欄 */
+.input-box {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .input-box input {
   width: 100%;
   padding: 14px;
