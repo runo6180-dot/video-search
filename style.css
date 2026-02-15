@@ -107,9 +107,16 @@ button:hover {
 }
 
 .result-item {
-  flex: 1; /* ← 幅を均等にする */
   display: flex;
   flex-direction: column;
+}
+
+.result-item:first-child {
+  flex: 1;
+}
+
+.result-item:last-child {
+  flex: 2;
 }
 
 .result-item .result-value {
