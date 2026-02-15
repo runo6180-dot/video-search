@@ -93,7 +93,7 @@ button:hover {
 .result-item {
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
+  margin-bottom: 0px;
 }
 
 /* キー側（比率維持） */
