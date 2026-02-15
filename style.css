@@ -109,13 +109,15 @@ button:hover {
 }
 
 /* キー側のカラム */
+/* キー側のカラム */
 .result-item:first-child {
-  flex: 1;
+  flex: 1.15;   /* ← ここで16pxぶんを内部幅として吸収する */
   padding-left: 0;
-  padding-right: 16px;   /* ← この余白も中央計算に含まれる */
+  padding-right: 0;  /* ← 外側の余白を消す（吸収する） */
   display: flex;
   flex-direction: column;
 }
+
 
 
 
@@ -131,13 +133,13 @@ button:hover {
   border-left: 1px solid #e5e5e5;
 }
 
-
 /* キーの値だけ中央揃え */
 .result-item:first-child .result-value {
   font-size: 30px;
   font-weight: 700;
-  align-self: center;     /* ← これが内部幅中央の決め手 */
+  align-self: center;
 }
+
 
 
 
