@@ -16,7 +16,6 @@ html, body {
     box-sizing: border-box;
 }
 
-
 h1 {
   text-align: center;
   margin-bottom: 25px;
@@ -59,9 +58,8 @@ input, button {
   width: 100%;
   box-sizing: border-box;
   margin: 0 0 12px 0;
-  padding: 14px; /* ← 左右paddingを消して均等に */
+  padding: 14px;
 }
-
 
 button:hover {
   background: #3b7ac4;
@@ -75,7 +73,6 @@ button:hover {
   margin-top: 25px;
   animation: fadeIn 0.25s ease-out;
 }
-
 
 .result-row {
   display: flex;
@@ -91,12 +88,13 @@ button:hover {
 }
 
 .result-value {
-  font-size: 18px;   /* ← タイトルとキーを同じ大きさに */
+  font-size: 18px;
   font-weight: 600;
   color: #2c3e50;
   line-height: 1.4;
 }
 
+/* キー＆チャンネルの横並び行 */
 .result-row-horizontal {
   display: flex;
   gap: 24px;
@@ -105,11 +103,13 @@ button:hover {
   border-top: 1px solid #e5e5e5;
 }
 
+/* 各カラムの基本 */
 .result-item {
   display: flex;
   flex-direction: column;
 }
 
+/* 比率：キー 1、チャンネル 2 */
 .result-item:first-child {
   flex: 1;
 }
@@ -118,27 +118,25 @@ button:hover {
   flex: 2;
 }
 
+/* 共通の値スタイル（チャンネル側も含む） */
 .result-item .result-value {
   padding-right: 16px;
+  text-align: left;
 }
 
+/* 右側（チャンネル）だけ縦線＋左余白 */
 .result-item + .result-item {
   border-left: 1px solid #e5e5e5;
   padding-left: 16px;
 }
 
+/* キーだけ中央寄せ＆大きくする（ここが最優先で効くように一番後ろ） */
 .result-item:first-child .result-value {
   font-size: 30px;
   font-weight: 700;
   text-align: center;
-}
-
-.result-item:first-child .result-value {
-  text-align: center;
   padding-right: 0;
 }
-
-
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
