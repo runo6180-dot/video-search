@@ -32,7 +32,7 @@ html, body {
 
 .input-box input {
   width: 100%;
-  padding: 14px;
+  padding: 12px;
   font-size: 16px;
   margin-bottom: 12px;
   box-sizing: border-box;
@@ -54,7 +54,7 @@ html, body {
 
 .input-box button {
   width: 100%;
-  padding: 14px;
+  padding: 12px;
   font-size: 17px;
   box-sizing: border-box;
   font-family: "Helvetica Neue", Arial, sans-serif;
