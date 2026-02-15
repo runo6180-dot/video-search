@@ -108,7 +108,7 @@ button:hover {
 
 /* キーだけ中央寄せ＆大きくする */
 .result-item:first-child .result-value {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 700;
   text-align: center;
 }
