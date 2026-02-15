@@ -108,15 +108,16 @@ button:hover {
   flex-direction: column;
 }
 
-/* キー側（左0 / 右16） */
+/* キー側のカラム */
 .result-item:first-child {
   flex: 1;
   padding-left: 0;
   padding-right: 16px;
-  display: flex;              /* ← 追加 */
-  justify-content: center;    /* ← 追加：余白込みの中央 */
-  align-items: center;        /* ← 縦方向も中央にしたいなら */
+  display: flex;              /* ← 追加：枠をflex化 */
+  flex-direction: column;
+  align-items: center;        /* ← 追加：横方向の中央揃え */
 }
+
 
 /* チャンネル側（左16 / 右0） */
 .result-item:last-child {
@@ -130,11 +131,13 @@ button:hover {
   border-left: 1px solid #e5e5e5;
 }
 
-/* キー側の中央揃え */
+
+/* キーの値だけ中央揃え */
 .result-item:first-child .result-value {
   font-size: 30px;
   font-weight: 700;
 }
+
 
 
 
