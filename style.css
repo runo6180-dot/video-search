@@ -3,6 +3,7 @@ html, body {
     padding: 0;
     width: 100%;
     overflow-x: hidden;
+    box-sizing: border-box;
     font-family: "Helvetica Neue", Arial, sans-serif;
     background: #f0f2f5;
     color: #333;
