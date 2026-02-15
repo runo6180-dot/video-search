@@ -92,6 +92,7 @@ button:hover {
   display: flex;
   padding-top: 12px;
   border-top: 1px solid #e5e5e5;
+  margin-bottom: 0;   /* ← タイトルの下と揃えるため余白ゼロ */
 }
 
 /* 共通カラム */
@@ -103,8 +104,8 @@ button:hover {
 /* ===== キー側 ===== */
 .result-item:first-child {
   flex: 1.15;
-  padding-right: 0;
-  justify-content: center;  /* 縦中央 */
+  padding-right: 0;   /* ← 内部幅を歪めない */
+  /* justify-content: center; ← 中央揃え削除 */
 }
 
 /* ラベルは左寄せのまま */
@@ -112,11 +113,11 @@ button:hover {
   text-align: left;
 }
 
-/* 値だけ中央 */
+/* 値はタイトルの真下に自然に配置 */
 .result-item:first-child .result-value {
   font-size: 30px;
   font-weight: 700;
-  text-align: center;
+  text-align: left;   /* ← 左寄せで自然な縦流れ */
   width: 100%;
 }
 
