@@ -9,12 +9,15 @@ html, body {
     color: #333;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .container {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
     padding: 0 16px;
-    box-sizing: border-box;
 }
 
 h1 {
@@ -69,77 +72,77 @@ button:hover {
 }
 
 .result-row {
-  display: flex;
-  flex-direction: column;
   margin-bottom: 16px;
 }
 
-/* ===== 横並び（比率はそのまま） ===== */
+/* ===============================
+   横並び（キー + チャンネル）
+================================ */
 
 .result-row-horizontal {
   display: flex;
-  align-items: flex-start; /* 上端揃えのみ変更 */
+  align-items: flex-start;   /* 上端完全一致 */
   padding-top: 12px;
   border-top: 1px solid #e5e5e5;
-  margin-bottom: 0;
 }
 
-.result-row-horizontal {
-  display: flex;
-  align-items: flex-start;
-}
-
-/* 共通カラム */
+/* 各カラム */
 .result-item {
   display: flex;
   flex-direction: column;
-  margin-bottom: 0px;
+  margin: 0;                 /* 余計な高さ差を完全排除 */
 }
 
-/* キー側（比率維持） */
+/* 比率はそのまま */
 .result-item:first-child {
   flex: 1.15;
-  padding-right: 0;
 }
 
-/* チャンネル側（比率維持） */
 .result-item:last-child {
   flex: 2;
   padding-left: 16px;
 }
 
-/* 縦線（位置そのまま） */
+/* 縦線 */
 .result-item + .result-item {
   border-left: 1px solid #e5e5e5;
 }
 
-/* ===== ラベル高さを完全固定 ===== */
+/* ===============================
+   ラベル（完全固定）
+================================ */
 
 .result-label {
   font-size: 13px;
   font-weight: 700;
   color: #7a7a7a;
-
-  margin: 0 0 6px 0;  /* 上マージンを完全に消す */
-  line-height: 18px;  /* ← line-heightを高さと一致させる */
-  height: 18px;       /* ← 固定 */
+  margin: 0;                 /* 上下余白ゼロ */
+  height: 20px;              /* ← 高さ固定 */
+  line-height: 20px;         /* ← 同じ値にする */
+  display: block;
 }
 
-/* ===== 値 ===== */
+/* ===============================
+   値
+================================ */
 
 .result-value {
   font-size: 18px;
   font-weight: 600;
   color: #2c3e50;
-  line-height: 1.4;
+  margin: 4px 0 0 0;         /* ラベルとの距離だけ作る */
+  line-height: 1.2;
 }
 
+/* キーの大きい数字 */
 .result-item:first-child .result-value {
   font-size: 30px;
   font-weight: 700;
   text-align: center;
-  width: 100%;
+  line-height: 1.1;
 }
+
+/* =============================== */
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
