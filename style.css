@@ -134,6 +134,9 @@ button:hover {
   text-align: center;
 }
 
+.result-item:first-child .result-value {
+    text-align: center !important;
+}
 
 
 @keyframes fadeIn {
