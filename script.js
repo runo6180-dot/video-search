@@ -28,9 +28,16 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
         <span class="result-value">${data.title}</span>
       </div>
   
-      <div class="result-row">
-        <span class="result-label">キー</span>
-        <span class="result-value">${data.info}</span>
+      <div class="result-row-horizontal">
+        <div class="result-item">
+          <span class="result-label">キー</span>
+          <span class="result-value">${data.info}</span>
+        </div>
+  
+        <div class="result-item">
+          <span class="result-label">チャンネル</span>
+          <span class="result-value">${data.channel}</span>
+        </div>
       </div>
   
     </div>
