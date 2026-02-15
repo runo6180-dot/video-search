@@ -8,7 +8,7 @@ document.getElementById("searchBtn").addEventListener("click", () => {
     return;
   }
 
-  // ★★★ 検索中を表示（これが消えてた） ★★★
+  // 検索中表示
   document.getElementById("result").innerHTML = `
     <div class="result-card">
       <p>検索中…</p>
@@ -49,9 +49,29 @@ document.getElementById("searchBtn").addEventListener("click", () => {
 
         </div>
       `;
-    })
+    })  // ← これが抜けてた
     .catch(err => {
       console.error(err);
       alert("エラーが発生しました");
     });
 });
+
+function extractYouTubeID(input) {
+  if (/^[a-zA-Z0-9_-]{11}$/.test(input)) {
+    return input;
+  }
+
+  const regexList = [
+    /v=([a-zA-Z0-9_-]{11})/,
+    /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+    /embed\/([a-zA-Z0-9_-]{11})/,
+    /shorts\/([a-zA-Z0-9_-]{11})/,
+  ];
+
+  for (const reg of regexList) {
+    const match = input.match(reg);
+    if (match) return match[1];
+  }
+
+  return null;
+}
