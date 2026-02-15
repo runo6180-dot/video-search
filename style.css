@@ -106,6 +106,12 @@ button:hover {
   padding-left: 16px; /* 線から少し余白を作る */
 }
 
+/* キーだけ少し大きくする */
+.result-item:first-child .result-value {
+  font-size: 20px;
+  font-weight: 650; /* ほんの少しだけ強調 */
+}
+
 
 
 @keyframes fadeIn {
