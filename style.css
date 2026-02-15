@@ -107,6 +107,12 @@ button:hover {
   text-align: left; /* ← キーが左に寄りすぎる問題を解決 */
 }
 
+.result-item + .result-item {
+  border-left: 1px solid #e5e5e5; /* 縦の区切り線 */
+  padding-left: 16px; /* 線から少し余白を作る */
+}
+
+
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
