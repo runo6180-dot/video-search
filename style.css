@@ -117,25 +117,21 @@ button:hover {
   flex: 2;
 }
 
-/* 右側（チャンネル）だけ縦線＋左余白 */
 .result-item + .result-item {
   border-left: 1px solid #e5e5e5;
-  padding-left: 16px;   /* ← これを戻す！ */
+  padding-left: 16px;   /* ← yu が戻したい余白、これでOK */
 }
 
-
-
-/* 元の余白は戻す（チャンネル側にもキー側にも効く） */
-.result-item .result-value {
+/* 右余白はチャンネル側だけにする */
+.result-item:last-child .result-value {
   padding-right: 16px;
 }
 
-/* キー側だけ中央揃え＋余白を中央計算に含めない */
+/* キー側は中央揃えだけ */
 .result-item:first-child .result-value {
   font-size: 30px;
   font-weight: 700;
   text-align: center;
-  transform: translateX(16px); /* ← 余白を“見た目だけ”右にずらす */
 }
 
 
