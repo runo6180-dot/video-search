@@ -1,8 +1,4 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-html, body, {
+html, body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -40,6 +36,8 @@ html, body, {
   font-size: 16px;
   margin-bottom: 12px;
   box-sizing: border-box;
+  display: block;
+  min-width: 0;
   border: 1px solid #d0d0d0;
   border-radius: 8px;
   background: #fff;
@@ -57,9 +55,11 @@ html, body, {
   padding: 14px;
   font-size: 17px;
   box-sizing: border-box;
+  min-width: 0;
   background: #4a90e2;
   color: white;
   border: none;
+  display: block;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
