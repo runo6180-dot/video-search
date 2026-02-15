@@ -106,8 +106,9 @@ button:hover {
 .result-item {
   display: flex;
   flex-direction: column;
+  padding-left: 16px;   /* ← キー側にも入る */
+  padding-right: 16px;  /* ← キー側にも入る */
 }
-
 /* 比率：キー 1、チャンネル 2 */
 .result-item:first-child {
   flex: 1;
@@ -115,11 +116,6 @@ button:hover {
 
 .result-item:last-child {
   flex: 2;
-}
-
-.result-item {
-  padding-left: 16px;
-  padding-right: 16px;
 }
 
 .result-item + .result-item {
