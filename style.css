@@ -97,7 +97,7 @@ button:hover {
 /* キー＆チャンネルの横並び行 */
 .result-row-horizontal {
   display: flex;
-  margin-bottom: 8px;
+  margin-bottom: 0px;
   padding-top: 12px;
   border-top: 1px solid #e5e5e5;
 }
@@ -116,6 +116,7 @@ button:hover {
   padding-right: 0;  /* ← 外側の余白を消す（吸収する） */
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 
