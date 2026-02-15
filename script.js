@@ -30,7 +30,7 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
   
       <div class="result-row">
         <span class="result-label">キー</span>
-        <span class="result-value key-value">${data.info}</span>
+        <span class="result-value">${data.info}</span>
       </div>
   
     </div>
