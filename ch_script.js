@@ -24,16 +24,24 @@ document.getElementById("ytSearchBtn").addEventListener("click", async () => {
         </div>
     `;
 
-    data.matches.forEach(item => {
-      html += `
-        <div class="table-row">
-          <div class="table-col-value">${item.E || "-"}</div>
-          <div class="table-col-value">
-            <a href="${item.G}" target="_blank">${item.sheetName}</a>
-          </div>
+  data.matches.forEach(item => {
+    html += `
+      <div class="table-row">
+  
+        <!-- 曲名（シート名を表示し、G列URLにリンクする） -->
+        <div class="table-col-value">
+          <a href="${item.G}" target="_blank">${item.sheetName}</a>
         </div>
-      `;
-    });
+  
+        <!-- キー（E列の値） -->
+        <div class="table-col-value">
+          ${item.E || "-"}
+        </div>
+  
+      </div>
+    `;
+  });
+
 
     html += `</div>`;
     resultArea.innerHTML = html;
