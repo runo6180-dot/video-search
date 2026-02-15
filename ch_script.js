@@ -7,7 +7,7 @@ document.getElementById("ytSearchBtn").addEventListener("click", async () => {
 
   try {
     // ★ あなたの GAS Web API URL に差し替え
-    const apiURL = "https://script.google.com/macros/s/AKfycbyyQNP-QoAyadYMHqSt1R6zJUdcgkAa8Jw54Zqs7ovznRUTUNw1lOwzwxqT0TtJAYX8/exec";
+    const apiURL = "YOUR_GAS_WEBAPP_URL_HERE";
 
     const res = await fetch(apiURL + "?url=" + encodeURIComponent(url));
     const data = await res.json();
