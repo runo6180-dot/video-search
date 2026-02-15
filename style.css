@@ -78,18 +78,19 @@ button:hover {
 }
 
 .result-label {
-  font-size: 13px;
-  font-weight: 700;
-  color: #7a7a7a;
-  margin-bottom: 4px;
+  height: 20px;   /* ← ラベル行の高さを固定 */
+  display: flex;
+  align-items: center;
 }
 
 .result-value {
-  font-size: 18px;
-  font-weight: 600;
-  color: #2c3e50;
-  line-height: 1.4;
+  height: 32px;   /* ← 値行の高さを固定（フォント30pxに合わせる） */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
+
 
 /* キー＆チャンネル横並び */
 .result-row-horizontal {
