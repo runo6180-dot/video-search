@@ -112,9 +112,11 @@ button:hover {
 .result-item:first-child {
   flex: 1;
   padding-left: 0;
-  display: flex;              /* ← 追加：枠をflex化 */
+  padding-right: 16px;   /* ← この余白も中央計算に含まれる */
+  display: flex;
   flex-direction: column;
 }
+
 
 
 /* チャンネル側（左16 / 右0） */
@@ -134,7 +136,7 @@ button:hover {
 .result-item:first-child .result-value {
   font-size: 30px;
   font-weight: 700;
-  align-self: center;
+  align-self: center;     /* ← これが内部幅中央の決め手 */
 }
 
 
