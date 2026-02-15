@@ -125,7 +125,6 @@ button:hover {
   height: 20px;              /* ← 高さ固定 */
   line-height: 20px;         /* ← 同じ値にする */
   display: block;
-  text-align: left;
 }
 
 /* ===============================
