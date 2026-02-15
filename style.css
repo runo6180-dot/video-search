@@ -96,6 +96,25 @@ button:hover {
   flex: 1;
 }
 
+.result-row-horizontal {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e5e5; /* ← 画像みたいな区切り線 */
+}
+
+.result-item {
+  flex: 1; /* ← 幅を均等にする */
+  display: flex;
+  flex-direction: column;
+}
+
+.result-item .result-value {
+  text-align: left; /* ← キーが左に寄りすぎる問題を解決 */
+}
+
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
