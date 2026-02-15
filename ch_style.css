@@ -138,7 +138,7 @@ html, body {
 
 @media (max-width: 480px) {
   .page-shell {
-    padding: 0 8px;
+    padding: 0 12px;
   }
 }
 
