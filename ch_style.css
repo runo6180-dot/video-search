@@ -1,6 +1,3 @@
-* {
-  box-sizing: border-box;
-}
 
 
 html, body {
@@ -13,6 +10,11 @@ html, body {
   background: #f0f2f5;
   color: #333;
 }
+
+* {
+  box-sizing: border-box;
+}
+
 
 .page-shell {
   width: 100%;
@@ -99,6 +101,7 @@ html, body {
   display: flex;
   font-weight: 700;
   color: #7a7a7a;
+  overflow: hidden;
   border-bottom: 1px solid #e5e5e5;
   padding-bottom: 8px;
   margin-bottom: 12px;
