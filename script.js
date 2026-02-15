@@ -23,13 +23,15 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
   resultDiv.innerHTML = `
     <div class="result-card">
   
-      <div class="result-label">タイトル</div>
-      <div class="result-title-text">${data.title}</div>
+      <div class="result-row">
+        <span class="result-label">タイトル</span>
+        <span class="result-value">${data.title}</span>
+      </div>
   
-      <div class="result-divider"></div>
-  
-      <div class="result-label">キー</div>
-      <div class="result-key">${data.info}</div>
+      <div class="result-row">
+        <span class="result-label">キー</span>
+        <span class="result-value key-value">${data.info}</span>
+      </div>
   
     </div>
   `;
