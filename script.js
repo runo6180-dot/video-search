@@ -21,9 +21,12 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
     }
 
   resultDiv.innerHTML = `
-    <h2 class="title">タイトル：${data.title}</h2>
-    <p class="key">キー：${data.info}</p>
+    <div class="result-card">
+      <div class="result-title">タイトル：${data.title}</div>
+      <div class="result-key">キー：${data.info}</div>
+    </div>
   `;
+
 
   } catch (e) {
     resultDiv.innerHTML = "エラーが発生しました";
