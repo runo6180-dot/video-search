@@ -102,10 +102,11 @@ button:hover {
 
 /* 共通カラム */
 .result-item {
+  min-height: 70px;        /* ← 高さを揃える唯一の方法 */
   display: flex;
   flex-direction: column;
-  justify-content: center;   /* ← 中身を縦中央に揃える */
-  min-height: 70px;          /* ← 高さを揃えるための絶対条件 */
+  justify-content: center; /* ← 中身を縦中央に揃える */
+  align-items: flex-start; /* ← ラベルを左寄せのままにする */
 }
 
 /* ===== キー側 ===== */
