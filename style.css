@@ -120,8 +120,8 @@ button:hover {
 /* 共通の値スタイル（チャンネル側も含む） */
 .result-item .result-value {
   padding-right: 16px;
-  text-align: left;
 }
+
 
 /* 右側（チャンネル）だけ縦線＋左余白 */
 .result-item + .result-item {
