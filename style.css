@@ -8,11 +8,12 @@ body {
 
 
 .container {
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
-  padding: 0 16px; /* ← ここに余白を戻す */
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px 16px; /* ← 余白はここに移動 */
 }
+
 
 h1 {
   text-align: center;
