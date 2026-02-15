@@ -76,8 +76,6 @@ html, body {
   min-width: 0;
 }
 
-}
-
 /* 表ヘッダー */
 .table-head {
   display: flex;
