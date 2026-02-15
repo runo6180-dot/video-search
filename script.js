@@ -22,7 +22,11 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
 
   resultDiv.innerHTML = `
     <div class="result-card">
-      <div class="result-title">タイトル：${data.title}</div>
+      <div class="result-title-label">タイトル</div>
+      <div class="result-title-text">${data.title}</div>
+  
+      <div class="result-divider"></div>
+  
       <div class="result-key">キー：${data.info}</div>
     </div>
   `;
