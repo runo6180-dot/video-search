@@ -5,13 +5,11 @@ document.getElementById("ytSearchBtn").addEventListener("click", async () => {
   const resultArea = document.getElementById("resultArea");
   resultArea.innerHTML = "検索中…";
 
-  try {
-    // ★ あなたの GAS Web API URL に差し替え
-    const apiURL = "https://script.google.com/macros/s/AKfycbyyQNP-QoAyadYMHqSt1R6zJUdcgkAa8Jw54Zqs7ovznRUTUNw1lOwzwxqT0TtJAYX8/exec";
+  // ★ GAS Web アプリ URL
+  const apiURL = "https://script.google.com/macros/s/AKfycbyyQNP-QoAyadYMHqSt1R6zJUdcgkAa8Jw54Zqs7ovznRUTUNw1lOwzwxqT0TtJAYX8/exec";
 
-    const res = await fetch(apiURL + "?url=" + encodeURIComponent(url));
-    const data = await res.json();
-
+  // ★ JSONP で GAS を呼ぶ
+  fetchJSONP(apiURL, url, (data) => {
     if (!data.matches || data.matches.length === 0) {
       resultArea.innerHTML = "<p>該当データが見つかりませんでした。</p>";
       return;
@@ -39,9 +37,23 @@ document.getElementById("ytSearchBtn").addEventListener("click", async () => {
 
     html += `</div>`;
     resultArea.innerHTML = html;
-
-  } catch (e) {
-    resultArea.innerHTML = "<p>エラーが発生しました。</p>";
-    console.error(e);
-  }
+  });
 });
+
+
+// ------------------------------------------------------
+// ★ JSONP 呼び出し関数（CORS 完全回避）
+// ------------------------------------------------------
+function fetchJSONP(apiURL, url, callback) {
+  const callbackName = "jsonp_cb_" + Math.random().toString(36).substr(2, 9);
+
+  window[callbackName] = function(data) {
+    callback(data);
+    delete window[callbackName];
+    document.body.removeChild(script);
+  };
+
+  const script = document.createElement("script");
+  script.src = `${apiURL}?callback=${callbackName}&url=${encodeURIComponent(url)}`;
+  document.body.appendChild(script);
+}
