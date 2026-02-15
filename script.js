@@ -34,7 +34,7 @@ document.getElementById("searchBtn").addEventListener("click", () => {
             <div class="result-value">${data.title}</div>
           </div>
           <div class="result-row">
-            <div class="result-label">情報</div>
+            <div class="result-label">キー</div>
             <div class="result-value">${data.info}</div>
           </div>
         </div>
