@@ -95,6 +95,9 @@ html, body {
 .video-type-box label {
   display: inline-block;
   cursor: pointer;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
 }
 
 .video-type-box input[type="radio"] {
@@ -102,12 +105,6 @@ html, body {
   transform: scale(1.2);
   cursor: pointer;
 }
-
-.video-type-box input[type="radio"] {
-  transform: scale(1.2);
-  cursor: pointer;
-}
-
 
 .channel-name-box {
   margin-top: 16px;
