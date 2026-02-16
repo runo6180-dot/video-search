@@ -85,7 +85,8 @@ html, body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 16px;
   margin-bottom: 12px;
   padding-left: 4px;
   font-size: 15px;
@@ -96,8 +97,10 @@ html, body {
   display: flex;
   align-items: center;
   white-space: nowrap;
-  gap: 4px;
+  gap: 6px;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .video-type-box input[type="radio"] {
