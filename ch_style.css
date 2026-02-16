@@ -147,7 +147,7 @@ html, body {
 /* 左列（曲名）80% */
 .table-col:first-child,
 .table-col-value:first-child {
-  flex: 0 0 80%;
+  flex: 0 0 90%;
   text-align: left;
   min-width: 0;
 }
@@ -155,7 +155,7 @@ html, body {
 /* 右列（キー）20% */
 .table-col:last-child,
 .table-col-value:last-child {
-  flex: 0 0 20%;
+  flex: 0 0 10%;
   text-align: left; 
   min-width: 0;
 }
