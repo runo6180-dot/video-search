@@ -83,6 +83,8 @@ html, body {
 
 .video-type-box {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   gap: 20px;
   margin-bottom: 12px;
   padding-left: 4px;
