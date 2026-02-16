@@ -98,6 +98,8 @@ html, body {
   flex-direction: row;
   align-items: center;
   gap: 6px;
+  display: inline-flex !important;
+
 }
 
 .video-type-box input[type="radio"] {
