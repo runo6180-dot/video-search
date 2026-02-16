@@ -152,11 +152,11 @@ html, body {
   min-width: 0;
 }
 
-/* 右列（キー）20%・右寄せ */
+/* 右列（キー）20% */
 .table-col:last-child,
 .table-col-value:last-child {
   flex: 0 0 20%;
-  text-align: right;
+  text-align: left; 
   min-width: 0;
 }
 
