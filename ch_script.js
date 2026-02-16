@@ -14,6 +14,16 @@ document.getElementById("ytSearchBtn").addEventListener("click", async () => {
       resultArea.innerHTML = "<p>該当データが見つかりませんでした。</p>";
       return;
     }
+    
+    // ★ B列のチャンネル名（複数シートでも同じなので先頭だけ使う）
+    const channelName = data.matches[0].channelName || "(チャンネル名不明)";
+    
+    // ★ 検索ボタンと表の間に表示する
+    let html = `
+      <div class="channel-name-box">
+        <p class="channel-name">チャンネル名：${channelName}</p>
+      </div>
+    `;
 
     // 表の生成
     let html = `
