@@ -101,11 +101,13 @@ html, body {
 }
 
 .video-type-box label {
-  display: flex;
+  display: inline-flex;
+  flex-direction: row;
   align-items: center;
   gap: 6px;
   cursor: pointer;
 }
+
 
 .video-type-box input[type="radio"] {
   transform: scale(1.2);
