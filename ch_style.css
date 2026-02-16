@@ -144,8 +144,20 @@ html, body {
   word-break: break-word;
 }
 
-.table-col-value:nth-child(2) {
+/* 左列（曲名）80% */
+.table-col:first-child,
+.table-col-value:first-child {
+  flex: 0 0 80%;
+  text-align: left;
+  min-width: 0;
+}
+
+/* 右列（キー）20%・右寄せ */
+.table-col:last-child,
+.table-col-value:last-child {
+  flex: 0 0 20%;
   text-align: right;
+  min-width: 0;
 }
 
 @keyframes fadeIn {
