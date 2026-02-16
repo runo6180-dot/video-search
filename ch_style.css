@@ -93,13 +93,10 @@ html, body {
 }
 
 .video-type-box label {
-  display: inline-block;
-  cursor: pointer;
-  flex-direction: row;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  display: inline-flex !important;
-
+  cursor: pointer;
 }
 
 .video-type-box input[type="radio"] {
