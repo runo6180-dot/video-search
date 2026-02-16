@@ -85,7 +85,7 @@ html, body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   margin-bottom: 12px;
   padding-left: 4px;
   font-size: 15px;
@@ -95,13 +95,13 @@ html, body {
 .video-type-box label {
   display: inline-flex;
   align-items: center;
+  white-space: nowrap;
   gap: 6px;
   cursor: pointer;
 }
 
 .video-type-box input[type="radio"] {
   margin-right: 6px;
-  transform: scale(1.2);
   cursor: pointer;
 }
 
