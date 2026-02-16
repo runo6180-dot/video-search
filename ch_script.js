@@ -24,16 +24,15 @@ document.getElementById("ytSearchBtn").addEventListener("click", async () => {
         <p class="channel-name">チャンネル名：${channelName}</p>
       </div>
     `;
-
-    // 表の生成
-    let html = `
+    
+    // ★ 表の生成（← ここは let を付けない）
+    html += `
       <div class="card-block">
         <div class="table-head">
           <div class="table-col">曲名</div>
           <div class="table-col">キー</div>
         </div>
     `;
-
   data.matches.forEach(item => {
     html += `
       <div class="table-row">
