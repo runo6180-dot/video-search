@@ -81,6 +81,22 @@ html, body {
   background: #3b7ac4;
 }
 
+.channel-name-box {
+  margin-top: 16px;
+  margin-bottom: 12px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.channel-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
 /* 結果カード */
 .card-block {
   background: #ffffff;
