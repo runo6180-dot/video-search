@@ -96,7 +96,8 @@ html, body {
 .video-type-box label {
   display: flex;
   flex: 1;
-  align-items: center;
+  align-items: left;
+  justify-content: left;
   white-space: nowrap;
   gap: 6px;
   cursor: pointer;
