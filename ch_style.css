@@ -105,6 +105,10 @@ html, body {
   flex-shrink: 0;
 }
 
+.video-type-box input {
+  margin: 0; /* 左端にぴったり寄せる */
+}
+
 .video-type-box input[type="radio"] {
   margin-right: 6px;
   cursor: pointer;
