@@ -103,14 +103,6 @@ html, body {
   flex-shrink: 0;
 }
 
-.nomal {
-  felx:1
-}
-
-.shorts {
-  felx:1
-}
-
 .video-type-box input[type="radio"] {
   margin-right: 6px;
   cursor: pointer;
