@@ -86,7 +86,6 @@ html, body {
   width: 100%;
   flex-direction: row;
   align-items: center;
-  flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 12px;
   padding-left: 4px;
