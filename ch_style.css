@@ -81,38 +81,44 @@ html, body {
   background: #3b7ac4;
 }
 
+/* ラジオボタン全体のコンテナ */
 .video-type-box {
-  display: flex; /* 横並びにする [cite: 10] */
+  display: flex;
   width: 100%;
-  gap: 16px; /* 項目間の隙間 [cite: 10] */
-  margin-bottom: 12px; /* [cite: 10] */
-  padding-left: 4px; /* [cite: 10] */
+  flex-direction: row;
+  align-items: center;
+  gap: 16px; /* 項目間の間隔 */
+  margin-bottom: 12px; [cite: 10]
+  padding-left: 4px;
+  font-size: 15px;
+  color: #2c3e50;
 }
 
+/* 各選択肢（ラベル要素） */
 .video-type-box label {
-  display: flex; /* ラジオボタンと文字を横に並べる  */
-  flex: 1; /* 親要素の幅を 1:1 で均等に分ける  */
-  align-items: center; /* 垂直方向の中央揃え [cite: 12] */
-  justify-content: flex-start; /* ★中身を左寄せに固定 */
-  cursor: pointer; /* [cite: 12] */
-  min-width: 0; /* 文字溢れ防止 [cite: 12] */
+  display: flex;    /* 横並びを有効化  */
+  flex: 1 1 0;      /* 1:1の比率で幅を均等に分ける  */
+  min-width: 0; 
+  align-items: center;
+  justify-content: flex-start; /* ★中身を左寄せにする */
+  gap: 6px; [cite: 12]
+  cursor: pointer;
+  box-sizing: border-box; [cite: 12]
 }
 
+/* ラジオボタン自体の設定 */
 .video-type-box input[type="radio"] {
-  margin: 0; /* 余計な余白を消す [cite: 14] */
-  margin-right: 8px; /* ラジオボタンと文字の距離を調整 */
+  margin: 0; [cite: 13, 14]
   flex-shrink: 0; /* ★ボタンが潰れないように固定 */
+  cursor: pointer; [cite: 14]
 }
 
-.video-type-box span {
-  font-size: 15px; /* [cite: 10] */
-  white-space: nowrap; /* ★文字が勝手に改行されないようにする */
-  overflow: hidden;
-  text-overflow: ellipsis; /* 万が一溢れたら「...」にする */
-}
-
-.video-type-box input {
-  margin: 0;
+/* テキスト部分 */
+.video-type-box label span {
+  min-width: 0; [cite: 12]
+  white-space: nowrap;      /* ★テキストの改行を防止 */
+  overflow: hidden;         /* はみ出し防止 */
+  text-overflow: ellipsis;  /* 長すぎる場合は「...」にする */
 }
 
 
