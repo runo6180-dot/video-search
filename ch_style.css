@@ -81,6 +81,7 @@ html, body {
   background: #3b7ac4;
 }
 
+/* ラジオボタンエリア全体の調整 */
 .video-type-box {
   display: flex;
   width: 100%;
@@ -89,33 +90,34 @@ html, body {
   gap: 16px;
   margin-bottom: 12px;
   padding-left: 4px;
+  font-size: 15px;
+  color: #2c3e50;
 }
 
-/* 1:1の比率を保ちつつ左寄せにする設定 */
+/* 選択肢（ラベル）の設定：ここが重要です */
 .video-type-box label {
-  display: flex;      /* ボタンと文字を横並びに */
-  flex: 1;           /* 50%ずつの比率で領域を確保 */
-  align-items: center;
-  justify-content: flex-start; /* ★中身を左端に寄せる */
+  display: flex;    /*  */
+  flex: 1;          /* 幅を50%ずつ均等に分ける */
+  align-items: center; 
+  justify-content: flex-start; /* ★これで確実に左寄せになります */
+  gap: 8px;         /* ボタンと文字の間隔 */
   cursor: pointer;
-  min-width: 0;       /* はみ出し防止用 */
+  min-width: 0;     /* 崩れ防止 */
 }
 
-/* ラジオボタン自体の設定 */
+/* ラジオボタン本体 */
 .video-type-box input[type="radio"] {
-  margin: 0;
-  margin-right: 8px;  /* 文字との間隔 */
-  flex-shrink: 0;     /* ★ボタンが潰れないように固定 */
+  margin: 0;        /* [cite: 14] */
+  flex-shrink: 0;   /* ★ボタンが潰れて消えるのを防ぎます */
+  width: 18px;      /* サイズを明示的に指定 */
+  height: 18px;
+  cursor: pointer;
 }
 
-/* テキスト部分の設定 */
+/* テキスト部分 */
 .video-type-box label span {
-  /* の min-width: 0; は削除するか、以下のように設定 */
-  flex: 1;            /* 残りの幅を占有 */
-  text-align: left;   /* ★文字列を左寄せ */
-  white-space: nowrap;/* ★改行させずに表示 */
-  overflow: hidden;
-  text-overflow: ellipsis; /* 万が一溢れたら「...」にする */
+  white-space: nowrap; /* ★文字が改行されて消えるのを防ぎます */
+  display: inline-block;
 }
 
 
