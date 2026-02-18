@@ -86,7 +86,7 @@ html, body {
   width: 100%;
   flex-direction: row;
   align-items: center;
-  /* 比率ではなく、項目間の距離（gap）で調整するのがコツ */
+  /* 項目間の距離を少し広めに設定（32pxくらいが綺麗です） */
   gap: 32px; 
   margin-bottom: 12px;
   padding-left: 4px;
@@ -94,11 +94,11 @@ html, body {
 
 .video-type-box label {
   display: flex;
-  /* flex: 1; を削除、または flex: none; にして幅を自動にする */
+  /* 均等分けをやめて、中身のサイズに合わせる */
   flex: none; 
   align-items: center;
   justify-content: flex-start;
-  gap: 8px;
+  gap: 8px; /* ボタンと文字の距離 */
   cursor: pointer;
 }
 
@@ -107,10 +107,10 @@ html, body {
   flex-shrink: 0;
 }
 
-/* テキスト部分 */
 .video-type-box label span {
-  white-space: nowrap; /* ★文字が改行されて消えるのを防ぎます */
-  display: inline-block;
+  /* spanも flex: 1 などは不要。そのまま表示 */
+  white-space: nowrap;
+  font-size: 15px;
 }
 
 
