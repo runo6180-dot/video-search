@@ -81,37 +81,30 @@ html, body {
   background: #3b7ac4;
 }
 
-/* ラジオボタンエリア全体の調整 */
 .video-type-box {
   display: flex;
   width: 100%;
   flex-direction: row;
   align-items: center;
-  gap: 16px;
+  /* 比率ではなく、項目間の距離（gap）で調整するのがコツ */
+  gap: 32px; 
   margin-bottom: 12px;
   padding-left: 4px;
-  font-size: 15px;
-  color: #2c3e50;
 }
 
-/* 選択肢（ラベル）の設定：ここが重要です */
 .video-type-box label {
-  display: flex;    /*  */
-  flex: 1;          /* 幅を50%ずつ均等に分ける */
-  align-items: center; 
-  justify-content: flex-start; /* ★これで確実に左寄せになります */
-  gap: 8px;         /* ボタンと文字の間隔 */
+  display: flex;
+  /* flex: 1; を削除、または flex: none; にして幅を自動にする */
+  flex: none; 
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
   cursor: pointer;
-  min-width: 0;     /* 崩れ防止 */
 }
 
-/* ラジオボタン本体 */
 .video-type-box input[type="radio"] {
-  margin: 0;        /* [cite: 14] */
-  flex-shrink: 0;   /* ★ボタンが潰れて消えるのを防ぎます */
-  width: 18px;      /* サイズを明示的に指定 */
-  height: 18px;
-  cursor: pointer;
+  margin: 0;
+  flex-shrink: 0;
 }
 
 /* テキスト部分 */
