@@ -116,6 +116,7 @@ html, body {
 
 .video-type-box input[type="radio"] {
   margin-right: 6px;
+  flex-shrink: 0;
   cursor: pointer;
   margin: 0;
 }
