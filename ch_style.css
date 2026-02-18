@@ -94,16 +94,16 @@ html, body {
 }
 
 .video-type-box label {
-  display: flex;
-  flex: 1 1 0;
+  display: flex;      /* flex アイテムとして扱わせる */
+  flex: 1 1 0;        /* 均等幅 */
+  min-width: 0;       /* 中身の幅を優先しない */
+  box-sizing: border-box;
   align-items: center;
-  justify-content: flex-start;
   gap: 6px;
   cursor: pointer;
-  min-width: 0;
-  box-sizing: border-box;
-  /* white-space: nowrap; ← これを削除 */
 }
+
+
 
 .video-type-box input {
   margin: 0;
