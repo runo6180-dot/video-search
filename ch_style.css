@@ -82,34 +82,30 @@ html, body {
 }
 
 .video-type-box {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-items: center;
-  /* 項目間の距離を少し広めに設定（32pxくらいが綺麗です） */
-  gap: 32px; 
+  display: flex !important;
+  width: 100% !important;
+  justify-content: flex-start !important; /* ★全体を左寄せに強制 */
+  gap: 24px !important;                 /* ★項目間の余白をしっかり取る */
   margin-bottom: 12px;
   padding-left: 4px;
 }
 
 .video-type-box label {
-  display: flex;
-  /* 均等分けをやめて、中身のサイズに合わせる */
-  flex: none; 
-  align-items: center;
-  justify-content: flex-start;
-  gap: 8px; /* ボタンと文字の距離 */
+  display: flex !important;
+  flex: none !important;                 /* ★幅を広げず、中身のサイズにする */
+  align-items: center !important;
   cursor: pointer;
+  min-width: 0;
 }
 
 .video-type-box input[type="radio"] {
-  margin: 0;
-  flex-shrink: 0;
+  margin: 0 !important;
+  margin-right: 8px !important;          /* ★ボタンと文字の間の余白 */
+  flex-shrink: 0 !important;
 }
 
-.video-type-box label span {
-  /* spanも flex: 1 などは不要。そのまま表示 */
-  white-space: nowrap;
+.video-type-box span {
+  white-space: nowrap !important;        /* ★改行を絶対に防ぐ */
   font-size: 15px;
 }
 
