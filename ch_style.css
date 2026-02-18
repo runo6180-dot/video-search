@@ -95,22 +95,24 @@ html, body {
 
 .video-type-box label {
   display: flex;
-  flex: 1;
+  flex: 1 1 0;
   align-items: center;
   justify-content: flex-start;
-  white-space: nowrap;
   gap: 6px;
   cursor: pointer;
+  min-width: 0;
+  box-sizing: border-box;
+  /* white-space: nowrap; ← これを削除 */
 }
 
 .video-type-box input {
-  margin: 0; /* 左端にぴったり寄せる */
+  margin: 0;
 }
 
 .video-type-box input[type="radio"] {
   margin-right: 6px;
   cursor: pointer;
-  margin: 0; 
+  margin: 0;
 }
 
 .channel-name-box {
