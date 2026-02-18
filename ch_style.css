@@ -102,7 +102,6 @@ html, body {
   gap: 6px;
   cursor: pointer;
   white-space: nowrap;
-  flex-shrink: 0;
 }
 
 .video-type-box input {
