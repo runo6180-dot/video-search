@@ -82,44 +82,39 @@ html, body {
 }
 
 .video-type-box {
-  display: flex;
+  display: flex; /* 横並びにする [cite: 10] */
   width: 100%;
-  flex-direction: row;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 12px;
-  padding-left: 4px;
-  font-size: 15px;
-  color: #2c3e50;
+  gap: 16px; /* 項目間の隙間 [cite: 10] */
+  margin-bottom: 12px; /* [cite: 10] */
+  padding-left: 4px; /* [cite: 10] */
 }
 
 .video-type-box label {
-  display: block;   /* ← これが決定的に重要 */
-  display: flex;    /* block の上で flex を有効化 */
-  flex: 1 1 0;
-  min-width: 0;
-  box-sizing: border-box;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
+  display: flex; /* ラジオボタンと文字を横に並べる  */
+  flex: 1; /* 親要素の幅を 1:1 で均等に分ける  */
+  align-items: center; /* 垂直方向の中央揃え [cite: 12] */
+  justify-content: flex-start; /* ★中身を左寄せに固定 */
+  cursor: pointer; /* [cite: 12] */
+  min-width: 0; /* 文字溢れ防止 [cite: 12] */
 }
 
-.video-type-box label span {
-  min-width: 0; /* ← これが決定打 */
+.video-type-box input[type="radio"] {
+  margin: 0; /* 余計な余白を消す [cite: 14] */
+  margin-right: 8px; /* ラジオボタンと文字の距離を調整 */
+  flex-shrink: 0; /* ★ボタンが潰れないように固定 */
 }
 
-
+.video-type-box span {
+  font-size: 15px; /* [cite: 10] */
+  white-space: nowrap; /* ★文字が勝手に改行されないようにする */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 万が一溢れたら「...」にする */
+}
 
 .video-type-box input {
   margin: 0;
 }
 
-.video-type-box input[type="radio"] {
-  margin-right: 6px;
-  flex-shrink: 1;
-  cursor: pointer;
-  margin: 0;
-}
 
 .channel-name-box {
   margin-top: 16px;
