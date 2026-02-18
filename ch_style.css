@@ -104,6 +104,9 @@ html, body {
   cursor: pointer;
 }
 
+.video-type-box label span {
+  min-width: 0; /* ← これが決定打 */
+}
 
 
 
