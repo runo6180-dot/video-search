@@ -81,32 +81,46 @@ html, body {
   background: #3b7ac4;
 }
 
+/* ラジオボタン全体のコンテナ */
 .video-type-box {
-  display: flex !important;
-  width: 100% !important;
-  justify-content: flex-start !important; /* ★全体を左寄せに強制 */
-  gap: 24px !important;                 /* ★項目間の余白をしっかり取る */
-  margin-bottom: 12px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start; /* 左寄せ */
+  gap: 32px;                   /* 項目間の余裕（スマホでも押しやすい距離） */
+  margin: 8px 0 16px 0;        /* 上下の余白を微調整 */
   padding-left: 4px;
 }
 
+/* 各選択肢（ラベル） */
 .video-type-box label {
-  display: flex !important;
-  flex: none !important;                 /* ★幅を広げず、中身のサイズにする */
-  align-items: center !important;
+  display: flex;
+  align-items: center;         /* ★ボタンと文字の上下中央を完璧に揃える */
   cursor: pointer;
-  min-width: 0;
+  user-select: none;           /* 文字クリック時の青い選択を防ぐ */
+  transition: opacity 0.2s;
 }
 
+.video-type-box label:hover {
+  opacity: 0.8;                /* マウスを乗せた時に少し反応させる */
+}
+
+/* ラジオボタン本体 */
 .video-type-box input[type="radio"] {
-  margin: 0 !important;
-  margin-right: 8px !important;          /* ★ボタンと文字の間の余白 */
-  flex-shrink: 0 !important;
+  margin: 0;
+  margin-right: 10px;          /* ★ボタンと文字の間の最適な距離 */
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;              /* ボタンが潰れるのを防ぐ */
 }
 
+/* テキスト部分 */
 .video-type-box span {
-  white-space: nowrap !important;        /* ★改行を絶対に防ぐ */
   font-size: 15px;
+  font-weight: 500;
+  color: #444;
+  line-height: 1;              /* 余計な行間を消して中央揃えを正確にする */
+  white-space: nowrap;
 }
 
 
@@ -197,5 +211,4 @@ html, body {
 @media (max-width: 480px) {
   .page-title {
     font-size: 22px;
-  }
 }
