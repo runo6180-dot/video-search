@@ -94,14 +94,16 @@ html, body {
 }
 
 .video-type-box label {
-  display: flex;      /* flex アイテムとして扱わせる */
-  flex: 1 1 0;        /* 均等幅 */
-  min-width: 0;       /* 中身の幅を優先しない */
+  display: block;   /* ← これが決定的に重要 */
+  display: flex;    /* block の上で flex を有効化 */
+  flex: 1 1 0;
+  min-width: 0;
   box-sizing: border-box;
   align-items: center;
   gap: 6px;
   cursor: pointer;
 }
+
 
 
 
