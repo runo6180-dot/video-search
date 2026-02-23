@@ -115,6 +115,15 @@ html, body {
   line-height: 1;              /* 垂直方向のズレを解消 */
 }
 
+/* チャンネル名ボックスのラベル */
+.channel-label {
+  font-size: 14px;
+  color: #7a7a7a;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 2px;
+}
+
 .channel-name-box {
   margin-top: 16px;
   margin-bottom: 12px;
@@ -161,12 +170,15 @@ html, body {
   min-width: 0;
 }
 
+/* --- 中略 --- */
+
 /* 行 */
 .table-row {
   display: flex;
   padding: 10px 0;
   border-bottom: 1px solid #efefef;
   min-width: 0;
+  align-items: center; /* 中央配置 */
 }
 
 .table-col-value {
@@ -178,21 +190,27 @@ html, body {
   word-break: break-word;
 }
 
-/* 左列（曲名）80% */
-.table-col:first-child,
-.table-col-value:first-child {
-  flex: 0 0 90%;
+/* 幅の決定版 */
+.col-main {
+  flex: 0 0 75% !important;
   text-align: left;
   min-width: 0;
 }
 
-/* 右列（キー）20% */
-.table-col:last-child,
-.table-col-value:last-child {
-  flex: 0 0 10%;
-  text-align: center; 
+.col-sub {
+  flex: 0 0 25% !important;
+  text-align: center;
   min-width: 0;
 }
+
+/* オク情報 */
+.octave-text {
+  font-size: 12px;
+  color: #4a90e2;
+  font-weight: normal;
+}
+
+/* --- 以下、@keyframes とメディアクエリ --- */
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
