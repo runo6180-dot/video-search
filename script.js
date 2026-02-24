@@ -7,7 +7,7 @@ document.getElementById("searchBtn").addEventListener("click", () => {
 
   if (ytID) {
     // YouTube用API
-    apiUrl = `https://script.google.com/macros/s/AKfycbyHe4gC1D8F8REOY1EBLpntB7ISxqT5ttdH83_ZA4l1cwQq0yUt3rBRJWpqcM4NoKTz/exec?id=${ytID}`;
+    apiUrl = `https://script.google.com/macros/s/AKfycbzUaE-I312HoCDoQNIww2gDQAEFaZBZY33B2s36iJgTJarc1BLZ-kk5VEnWlQIWoa7C9A/exec?id=${ytID}`;
   } else if (nicoID) {
     // ニコニコ用API
     apiUrl = `https://script.google.com/macros/s/AKfycbxbbtXZKBLiZU6GD4dh2L_RHYU_bPt4tUysEHt8cSOQc-oyCl-w_B0roC3Q4shh14CbUg/exec?id=${nicoID}`;
