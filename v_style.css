@@ -101,7 +101,6 @@ button:hover {
 /* キーを中央寄せ＆大きく表示する場合 */
 .highlight-key {
   font-size: 24px;
-  text-align: center;
   display: block;
 }
 
