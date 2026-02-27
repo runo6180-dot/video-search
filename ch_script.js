@@ -14,7 +14,7 @@ document.getElementById("ytSearchBtn").addEventListener("click", async () => {
   if (videoType === "normal") {
     // 横動画選択時
     if (isYouTube) {
-      apiURL = "https://script.google.com/macros/s/AKfycbyyQNP-QoAyadYMHqSt1R6zJUdcgkAa8Jw54Zqs7ovznRUTUNw1lOwzwxqT0TtJAYX8/exec";
+      apiURL = "https://script.google.com/macros/s/AKfycbxF6s_ok3l9CpUWPsAkbcgB3e4qvQEZQ-gSUtSndVBE_MZcjVMyIdy1rC4Dr54xyqlw/exec";
     } else if (isNicoNico) {
       apiURL = "https://script.google.com/macros/s/AKfycbzDrq3obNWV6Y9RWBVg76wELiB4ZymCgL_2zEVt57ORHlqS3sx69NvPDCSSizzkjpzFjA/exec";
     }
