@@ -210,6 +210,34 @@ html, body {
   font-weight: normal;
 }
 
+/* ソート可能なヘッダーのスタイル */
+.sortable {
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.sortable:hover {
+  color: #4a90e2;
+}
+
+/* ソート矢印の簡易表示 */
+.sortable::after {
+  content: ' ↕';
+  font-size: 10px;
+  opacity: 0.5;
+}
+
+.sortable.asc::after {
+  content: ' ▲';
+  opacity: 1;
+}
+
+.sortable.desc::after {
+  content: ' ▼';
+  opacity: 1;
+}
+
 /* --- 以下、@keyframes とメディアクエリ --- */
 
 @keyframes fadeIn {
