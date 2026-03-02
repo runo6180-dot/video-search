@@ -213,12 +213,16 @@ html, body {
 /* ソート可能なヘッダーのスタイル */
 .sortable {
   cursor: pointer;
-  position: relative;
-  user-select: none;
+  transition: color 0.2s;
+  user-select: none; /* テキスト選択を防ぐ */
 }
 
 .sortable:hover {
-  color: #4a90e2;
+  color: #3498db;
+}
+
+.table-col.asc, .table-col.desc {
+  color: #2c3e50;
 }
 
 /* ソート矢印の簡易表示 */
