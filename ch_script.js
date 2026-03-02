@@ -1,3 +1,7 @@
+let currentData = []; // ソート用にデータを保持
+let currentSortKey = 'furigana'; // デフォルトは曲名（ふりがな）順
+let currentSortOrder = 'asc'; // 昇順
+
 document.getElementById("ytSearchBtn").addEventListener("click", async () => {
   const url = document.getElementById("ytInput").value.trim();
   const videoType = document.querySelector('input[name="videoType"]:checked').value;
@@ -6,32 +10,23 @@ document.getElementById("ytSearchBtn").addEventListener("click", async () => {
   const resultArea = document.getElementById("resultArea");
   resultArea.innerHTML = "検索中…";
 
-  // --- APIの切り替えロジック ---
   let apiURL = "";
   const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
   const isNicoNico = url.includes("nicovideo.jp");
 
   if (videoType === "normal") {
-    // 横動画選択時
     if (isYouTube) {
-      apiURL = "https://script.google.com/macros/s/AKfycbxF6s_ok3l9CpUWPsAkbcgB3e4qvQEZQ-gSUtSndVBE_MZcjVMyIdy1rC4Dr54xyqlw/exec";
+      apiURL = "https://script.google.com/macros/s/AKfycbxhXbZALDuljvuXMf_bmr9DA13PPJ2okiVREPGTYkOSb9a-5ogRGsr0PBMJ5GTz1dVT_A/exec";
     } else if (isNicoNico) {
-      apiURL = "https://script.google.com/macros/s/AKfycbzDrq3obNWV6Y9RWBVg76wELiB4ZymCgL_2zEVt57ORHlqS3sx69NvPDCSSizzkjpzFjA/exec";
+      apiURL = "https://script.google.com/macros/s/AKfycbwDh0XbzdWxqu5fZulndiE-lIQI1EiWjXjxcl4P9eQp1KlyI69YSSwc-0xZ6HXEIU6dfw/exec";
     }
   } else if (videoType === "shorts") {
-    // ショート選択時
     if (isYouTube) {
-      apiURL = "https://script.google.com/macros/s/AKfycbzvGKM5qObFHi_6znB_FL87rJrC6H-6akDjQ4sYRrwz3fMSSxYeJjYXqbfkAVmWOCz4/exec";
+      apiURL = "https://script.google.com/macros/s/AKfycbyWiO2g0yEm9_1zsfEgcYnAbsJK_9TSX-okcJgjnkHtfimTUtSZwZhcXLDEDFZ9_5lzCQ/exec";
     } else if (isNicoNico) {
-      // ショート選択でニコニコURLの場合
       resultArea.innerHTML = "<p style='color: #e74c3c; font-weight: bold;'>ショート選択時はYouTubeのリンクを入力してください。</p>";
       return;
     }
-  }
-
-  if (!apiURL) {
-    resultArea.innerHTML = "<p>有効なURLを入力してください。</p>";
-    return;
   }
 
   fetchJSONP(apiURL, url, (data) => {
@@ -40,47 +35,91 @@ document.getElementById("ytSearchBtn").addEventListener("click", async () => {
       return;
     }
     
-    const channelName = data.matches[0].channelName || "(不明)";
-    
-    // タイトル表示の変更（チャンネルを小さく、名前をメインに）
-    let html = `
-      <div class="channel-name-box">
-        <span class="channel-label">チャンネル</span>
-        <p class="channel-name">${channelName}</p>
-      </div>
-    `;
-    
-    html += `
-      <div class="card-block">
-        <div class="table-head">
-          <div class="table-col col-main">曲名</div>
-          <div class="table-col col-sub">キー</div>
-        </div>
-    `;
-
-    data.matches.forEach(item => {
-      // F列（オク情報）がある場合はカッコを付けてキーと合体
-      let keyDisplay = item.E || "-";
-      if (item.F && item.F.trim() !== "") {
-        keyDisplay += `<br><span class="octave-text">(${item.F})</span>`;
-      }
-
-      html += `
-        <div class="table-row">
-          <div class="table-col-value col-main">
-            <a href="${item.G}" target="_blank">${item.sheetName}</a>
-          </div>
-          <div class="table-col-value col-sub">
-            ${keyDisplay}
-          </div>
-        </div>
-      `;
-    });
-
-    html += `</div>`;
-    resultArea.innerHTML = html;
+    currentData = data.matches;
+    currentSortKey = 'furigana'; // 検索時はデフォルト曲名順
+    renderResult();
   });
 });
+
+// 表示用関数
+function renderResult() {
+  const resultArea = document.getElementById("resultArea");
+  const channelName = currentData[0].channelName || "(不明)";
+
+  // データのソート
+  sortData(currentData, currentSortKey, currentSortOrder);
+
+  let html = `
+    <div class="channel-name-box">
+      <span class="channel-label">チャンネル</span>
+      <p class="channel-name">${channelName}</p>
+    </div>
+    <div class="card-block">
+      <div class="table-head">
+        <div class="table-col col-main sortable ${currentSortKey === 'furigana' ? currentSortOrder : ''}" onclick="changeSort('furigana')">曲名</div>
+        <div class="table-col col-sub sortable ${currentSortKey === 'key' ? currentSortOrder : ''}" onclick="changeSort('key')">キー</div>
+      </div>
+  `;
+
+  currentData.forEach(item => {
+    let keyDisplay = item.E || "-";
+    if (item.F && item.F.trim() !== "") {
+      keyDisplay += `<br><span class="octave-text">(${item.F})</span>`;
+    }
+
+    html += `
+      <div class="table-row">
+        <div class="table-col-value col-main">
+          <a href="${item.G}" target="_blank">${item.sheetName}</a>
+        </div>
+        <div class="table-col-value col-sub">
+          ${keyDisplay}
+        </div>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+  resultArea.innerHTML = html;
+}
+
+// ソート切り替え
+function changeSort(key) {
+  if (currentSortKey === key) {
+    currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+  } else {
+    currentSortKey = key;
+    currentSortOrder = 'asc';
+  }
+  renderResult();
+}
+
+// ソートロジック
+function sortData(data, key, order) {
+  const keyOrder = ["±0", "-1", "-2", "-3", "-4", "-5", "-6", "+1", "+2", "+3", "+4", "+5", "+6"];
+  const octOrder = { "": 0, "オク上": 1, "オク下": 2 };
+
+  data.sort((a, b) => {
+    let comparison = 0;
+    if (key === 'furigana') {
+      comparison = a.furigana.localeCompare(b.furigana, 'ja');
+    } else if (key === 'key') {
+      // キー番号のインデックス比較
+      const indexA = keyOrder.indexOf(a.E);
+      const indexB = keyOrder.indexOf(b.E);
+      
+      if (indexA !== indexB) {
+        comparison = (indexA === -1 ? 99 : indexA) - (indexB === -1 ? 99 : indexB);
+      } else {
+        // 同じキーの中でのオク情報比較
+        const octA = octOrder[a.F] !== undefined ? octOrder[a.F] : 0;
+        const octB = octOrder[b.F] !== undefined ? octOrder[b.F] : 0;
+        comparison = octA - octB;
+      }
+    }
+    return order === 'asc' ? comparison : -comparison;
+  });
+}
 
 function fetchJSONP(apiURL, url, callback) {
   const callbackName = "jsonp_cb_" + Math.random().toString(36).substr(2, 9);
