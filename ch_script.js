@@ -58,10 +58,8 @@ function renderResult() {
 
   sortData();
 
-  // ヘッダー矢印の表示ロジックを singer_key 側に合わせる
-  const nameArrow = currentSortKey === 'furigana' ? (currentSortOrder === 'asc' ? ' ▲' : ' ▼') : ' ↕';
-  const keyArrow = currentSortKey === 'key' ? (currentSortOrder === 'asc' ? ' ▲' : ' ▼') : ' ↕';
-
+  // ★JS側の矢印文字（nameArrow, keyArrow）を削除
+  // その代わり、classに currentSortOrder を入れることでCSS側が自動で矢印を出します
   let html = `
     <div class="channel-name-box">
       <span class="channel-label">チャンネル</span>
@@ -70,10 +68,10 @@ function renderResult() {
     <div class="card-block">
       <div class="table-head">
         <div class="table-col col-main sortable ${currentSortKey === 'furigana' ? currentSortOrder : ''}" onclick="changeSort('furigana')">
-          曲名${nameArrow}
+          曲名
         </div>
         <div class="table-col col-sub sortable ${currentSortKey === 'key' ? currentSortOrder : ''}" onclick="changeSort('key')">
-          キー${keyArrow}
+          キー
         </div>
       </div>
   `;
