@@ -40,10 +40,12 @@ function changeSort(key, mode) {
   renderResult(mode);
 }
 
+// --- renderResult関数の中身 ---
 function renderResult(mode) {
   const resultArea = document.getElementById("resultArea");
   sortData();
 
+  // HTMLの中に直接 ▲ を書くのをやめて、chと同じくクラス名で制御します
   let html = `
     <div class="channel-name-box">
       <span class="channel-label">歌い手名</span>
@@ -57,14 +59,16 @@ function renderResult(mode) {
 
     <div class="card-block">
       <div class="table-head">
-        <div class="table-col col-main sortable" onclick="changeSort('furigana', '${mode}')">
-          曲名 ${currentSortKey === 'furigana' ? (currentSortOrder === 'asc' ? '▲' : '▼') : '↕'}
+        <!-- classにソート状態を入れる (ch側と統一) -->
+        <div class="table-col col-main sortable ${currentSortKey === 'furigana' ? currentSortOrder : ''}" onclick="changeSort('furigana', '${mode}')">
+          曲名
         </div>
-        <div class="table-col col-sub sortable" onclick="changeSort('key', '${mode}')">
-          キー ${currentSortKey === 'key' ? (currentSortOrder === 'asc' ? '▲' : '▼') : '↕'}
+        <div class="table-col col-sub sortable ${currentSortKey === 'key' ? currentSortOrder : ''}" onclick="changeSort('key', '${mode}')">
+          キー
         </div>
       </div>
   `;
+  // --- 以下省略 ---
 
   currentDisplayData.forEach(item => {
     let keyDisp = item.key || "-";
