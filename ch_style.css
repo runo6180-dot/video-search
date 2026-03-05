@@ -71,6 +71,16 @@ html, body {
   to { opacity: 1; transform: translateY(0); }
 }
 @media (max-width: 480px) {
-  .page-title { font-size: 22px; }
-  .video-type-box { gap: 20px; }
+  .page-title {
+    font-size: 22px;
+  }
+  .video-type-box {
+    gap: 20px;
+  }
+
+  /* ★追加：スマホの時だけ、リンクを最初から「青」にする */
+  .table-col-value a {
+    color: #4a90e2; /* ホバー時と同じ青色 */
+    text-decoration: underline; /* 下線を引くとさらに「リンク感」が出ます（お好みで） */
+  }
 }
