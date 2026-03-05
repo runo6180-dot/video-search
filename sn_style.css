@@ -1,0 +1,131 @@
+/* 提供されたベースCSS */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: #f0f2f5;
+  color: #333;
+}
+
+* { box-sizing: border-box; }
+
+.page-shell {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.page-title {
+  text-align: center;
+  margin: 24px 0 20px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+/* 入力欄 */
+.input-box input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 12px;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.input-box button {
+  width: 100%;
+  padding: 12px;
+  font-size: 17px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* チャンネル名ボックス */
+.channel-label {
+  font-size: 14px;
+  color: #7a7a7a;
+  font-weight: 700;
+  display: block;
+}
+
+.channel-name-box {
+  margin-top: 16px;
+  margin-bottom: 12px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.channel-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+/* 切り替えラジオボタンコンテナ */
+.video-type-box {
+  display: flex;
+  gap: 24px;
+  margin: 8px 0 16px 4px;
+}
+
+.video-type-box label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* 結果表示 */
+.card-block {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  margin-top: 10px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.table-head {
+  display: flex;
+  font-weight: 700;
+  color: #7a7a7a;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 8px;
+}
+
+.table-row {
+  display: flex;
+  padding: 12px 0;
+  border-bottom: 1px solid #efefef;
+  align-items: center;
+}
+
+.col-main { flex: 0 0 75%; text-align: left; }
+.col-sub { flex: 0 0 25%; text-align: center; }
+
+.octave-text {
+  font-size: 12px;
+  color: #e74c3c; /* オク情報は目立つ色に */
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .page-title { font-size: 22px; }
+}
