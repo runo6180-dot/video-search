@@ -1,260 +1,76 @@
-
-
+/* --- 基本レイアウト --- */
 html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background: #f0f2f5;
-  color: #333;
+  margin: 0; padding: 0; width: 100%; overflow-x: hidden;
+  box-sizing: border-box; font-family: "Helvetica Neue", Arial, sans-serif;
+  background: #f0f2f5; color: #333;
 }
+* { box-sizing: border-box; }
 
-* {
-  box-sizing: border-box;
-}
+.page-shell { width: 100%; max-width: 600px; margin: 0 auto; padding: 0 16px; }
+.page-title { text-align: center; margin: 24px 0 20px; font-size: 26px; font-weight: 700; color: #2c3e50; }
 
-
-.page-shell {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-.page-title {
-  text-align: center;
-  margin: 24px 0 20px;
-  font-size: 26px;
-  font-weight: 700;
-  color: #2c3e50;
-}
-
-/* 入力欄 */
-.input-box {
-  width: 100%;
-  box-sizing: border-box;
-}
-
+/* --- 入力エリア --- */
 .input-box input {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  margin-bottom: 12px;
-  box-sizing: border-box;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  line-height: normal;
-  display: block;
-  min-width: 0;
-  border: 1px solid #d0d0d0;
-  border-radius: 8px;
-  background: #fff;
-  transition: 0.2s;
+  width: 100%; padding: 12px; font-size: 16px; margin-bottom: 12px;
+  border: 1px solid #d0d0d0; border-radius: 8px; background: #fff; transition: 0.2s;
 }
-
-.input-box input:focus {
-  border-color: #4a90e2;
-  box-shadow: 0 0 0 3px rgba(74,144,226,0.2);
-  outline: none;
-}
-
+.input-box input:focus { border-color: #4a90e2; box-shadow: 0 0 0 3px rgba(74,144,226,0.2); outline: none; }
 .input-box button {
-  width: 100%;
-  padding: 12px;
-  font-size: 17px;
-  box-sizing: border-box;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  line-height: normal;
-  min-width: 0;
-  background: #4a90e2;
-  color: white;
-  border: none;
-  display: block;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
+  width: 100%; padding: 12px; font-size: 17px; background: #4a90e2; color: white;
+  border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s;
 }
+.input-box button:hover { background: #3b7ac4; }
 
-.input-box button:hover {
-  background: #3b7ac4;
-}
+/* --- ラジオボタン --- */
+.video-type-box { display: flex; gap: 24px; margin: 8px 0 16px 4px; }
+.video-type-box label { display: flex; align-items: center; cursor: pointer; }
+.video-type-box input { margin: 0 8px 0 0; width: 16px; height: 16px; cursor: pointer; }
+.video-type-box span { font-size: 15px; }
 
-/* ラジオボタン全体のコンテナ */
-.video-type-box {
-  display: flex;
-  width: 100%;
-  justify-content: flex-start; /* 左寄せ */
-  gap: 24px;                   /* 項目間の自然な余白 */
-  margin: 8px 0 16px 0;        /* 上下の余白 */
-  padding-left: 4px;
-}
-
-/* 各選択肢（ラベル要素） */
-.video-type-box label {
-  display: flex;
-  align-items: center;         /* ★重要：ボタンと文字の上下中心を揃える */
-  cursor: pointer;
-}
-
-/* ラジオボタン本体 */
-.video-type-box input[type="radio"] {
-  margin: 0;
-  margin-right: 8px;           /* ボタンと文字の間の隙間 */
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;              /* ボタンが潰れないように固定 */
-  cursor: pointer;
-}
-
-/* テキスト部分（span） */
-.video-type-box span {
-  font-size: 15px;
-  white-space: nowrap;         /* 改行を防止 */
-  line-height: 1;              /* 垂直方向のズレを解消 */
-}
-
-/* チャンネル名ボックスのラベル */
-.channel-label {
-  font-size: 14px;
-  color: #7a7a7a;
-  font-weight: 700;
-  display: block;
-  margin-bottom: 2px;
-}
-
+/* --- 名前ボックス --- */
 .channel-name-box {
-  margin-top: 16px;
-  margin-bottom: 12px;
-  padding: 12px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  margin-top: 16px; margin-bottom: 12px; padding: 12px;
+  background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
+.channel-label { font-size: 14px; color: #7a7a7a; font-weight: 700; margin-bottom: 2px; }
+.channel-name { font-size: 18px; font-weight: 600; color: #2c3e50; margin: 0; }
 
-.channel-name {
-  font-size: 18px;
-  font-weight: 600;
-  color: #2c3e50;
-  margin: 0;
-}
-
-/* 結果カード */
+/* --- 結果テーブル --- */
 .card-block {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  margin-top: 25px;
+  background: #ffffff; border-radius: 14px; padding: 22px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08); margin-top: 25px;
   animation: fadeIn 0.25s ease-out;
-  width: 100%;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  min-width: 0;
 }
-/* 表ヘッダー */
-.table-head {
-  display: flex;
-  font-weight: 700;
-  color: #7a7a7a;
-  overflow: hidden;
-  border-bottom: 1px solid #e5e5e5;
-  padding-bottom: 8px;
-  min-width: 0;
-}
+.table-head { display: flex; border-bottom: 1px solid #e5e5e5; padding-bottom: 8px; color: #7a7a7a; font-weight: 700; }
+.table-row { display: flex; padding: 10px 0; border-bottom: 1px solid #efefef; align-items: center; }
 
-.table-col {
-  flex: 1;
-  font-size: 14px;
-  min-width: 0;
-}
+/* 列幅の指定 */
+.col-main { flex: 0 0 75% !important; text-align: left; }
+.col-sub { flex: 0 0 25% !important; text-align: center; }
 
-/* --- 中略 --- */
-
-/* 行 */
-.table-row {
-  display: flex;
-  padding: 10px 0;
-  border-bottom: 1px solid #efefef;
-  min-width: 0;
-  align-items: center; /* 中央配置 */
+/* 曲名リンク (snと統一) */
+.table-col-value a {
+  text-decoration: none; color: #2c3e50; font-weight: 600; transition: 0.2s; display: inline-block;
 }
-
-.table-col-value {
-  flex: 1;
-  font-size: 16px;
-  color: #2c3e50;
-  min-width: 0;
-  overflow-wrap: break-word;
-  word-break: break-word;
-}
-
-/* 幅の決定版 */
-.col-main {
-  flex: 0 0 75% !important;
-  text-align: left;
-  min-width: 0;
-}
-
-.col-sub {
-  flex: 0 0 25% !important;
-  text-align: center;
-  min-width: 0;
-}
+.table-col-value a:hover { color: #4a90e2; text-decoration: underline; }
 
 /* オク情報 */
-.octave-text {
-  font-size: 12px;
-  color: #4a90e2;
-  font-weight: normal;
-}
+.octave-text { font-size: 12px; color: #4a90e2; }
 
-/* ソート可能なヘッダーのスタイル */
-.sortable {
-  cursor: pointer;
-  transition: color 0.2s;
-  user-select: none; /* テキスト選択を防ぐ */
-}
+/* --- ソート矢印の出し分け (snと統一) --- */
+.sortable { cursor: pointer; transition: color 0.2s; user-select: none; }
+.sortable:hover { color: #4a90e2; }
 
-.sortable:hover {
-  color: #3498db;
-}
+.sortable::after { content: ' ↕'; font-size: 10px; opacity: 0.5; }
+.sortable.asc::after { content: ' ▲'; opacity: 1; color: #2c3e50; }
+.sortable.desc::after { content: ' ▼'; opacity: 1; color: #2c3e50; }
 
-.table-col.asc, .table-col.desc {
-  color: #2c3e50;
-}
-
-/* ソート矢印の簡易表示 */
-.sortable::after {
-  content: ' ↕';
-  font-size: 10px;
-  opacity: 0.5;
-}
-
-.sortable.asc::after {
-  content: ' ▲';
-  opacity: 1;
-}
-
-.sortable.desc::after {
-  content: ' ▼';
-  opacity: 1;
-}
-
-/* --- 以下、@keyframes とメディアクエリ --- */
-
+/* --- アニメーションとレスポンシブ --- */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-/* スマホ用設定：閉じカッコを整理しました */
 @media (max-width: 480px) {
-  .page-title {
-    font-size: 22px;
-  }
-  .video-type-box {
-    gap: 20px;                 /* スマホでは項目間を少し狭めて収まりを良くする */
-  }
+  .page-title { font-size: 22px; }
+  .video-type-box { gap: 20px; }
 }
