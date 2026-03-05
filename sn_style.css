@@ -120,5 +120,21 @@ html, body {
   color: #4a90e2;
 }
 
+/* 曲名リンクのスタイル */
+.song-link {
+  text-decoration: none;
+  color: #2c3e50; /* 元の文字色に近く */
+  transition: color 0.2s;
+  display: inline-block; /* タップしやすく */
+}
+
+.song-link:hover {
+  color: #4a90e2; /* ホバー時に青く */
+  text-decoration: underline;
+}
+
+/* スマホ等でリンクだと分かりやすくしたい場合は、
+   最初から色を #4a90e2 にしても良いかもしれません。 */
+
 .sortable { cursor: pointer; }
 .sortable:hover { color: #3498db; }
