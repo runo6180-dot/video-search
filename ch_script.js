@@ -50,14 +50,18 @@ function changeSort(key) {
   renderResult();
 }
 
+/* renderResult 関数内のヘッダー部分を以下のように修正 */
+
 function renderResult() {
   const resultArea = document.getElementById("resultArea");
   const channelName = currentData[0].channelName || "(不明)";
 
-  // 表示前にデータをソート
   sortData();
 
-  // ヘッダー部分にクリックイベント（changeSort）を付与
+  // ヘッダー矢印の表示ロジックを singer_key 側に合わせる
+  const nameArrow = currentSortKey === 'furigana' ? (currentSortOrder === 'asc' ? ' ▲' : ' ▼') : ' ↕';
+  const keyArrow = currentSortKey === 'key' ? (currentSortOrder === 'asc' ? ' ▲' : ' ▼') : ' ↕';
+
   let html = `
     <div class="channel-name-box">
       <span class="channel-label">チャンネル</span>
@@ -66,10 +70,10 @@ function renderResult() {
     <div class="card-block">
       <div class="table-head">
         <div class="table-col col-main sortable ${currentSortKey === 'furigana' ? currentSortOrder : ''}" onclick="changeSort('furigana')">
-          曲名 ${currentSortKey === 'furigana' ? (currentSortOrder === 'asc' ? '▲' : '▼') : ''}
+          曲名${nameArrow}
         </div>
         <div class="table-col col-sub sortable ${currentSortKey === 'key' ? currentSortOrder : ''}" onclick="changeSort('key')">
-          キー ${currentSortKey === 'key' ? (currentSortOrder === 'asc' ? '▲' : '▼') : ''}
+          キー${keyArrow}
         </div>
       </div>
   `;
@@ -85,7 +89,9 @@ function renderResult() {
         <div class="table-col-value col-main">
           <a href="${item.G}" target="_blank">${item.sheetName}</a>
         </div>
-        <div class="table-col-value col-sub">${keyDisplay}</div>
+        <div class="table-col-value col-sub">
+          <div style="font-weight:bold;">${keyDisplay}</div>
+        </div>
       </div>
     `;
   });
