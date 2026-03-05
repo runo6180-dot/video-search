@@ -136,5 +136,33 @@ html, body {
 /* スマホ等でリンクだと分かりやすくしたい場合は、
    最初から色を #4a90e2 にしても良いかもしれません。 */
 
-.sortable { cursor: pointer; }
-.sortable:hover { color: #3498db; }
+/* --- ソート矢印の出し分け (ch側と完全統一) --- */
+.sortable {
+  cursor: pointer;
+  transition: color 0.2s;
+  user-select: none;
+}
+.sortable:hover {
+  color: #4a90e2;
+}
+
+/* 矢印のフォントサイズを10pxに固定して統一 */
+.sortable::after {
+  content: ' ↕';
+  font-size: 10px; 
+  opacity: 0.5;
+  display: inline-block;
+  margin-left: 4px;
+}
+
+.sortable.asc::after {
+  content: ' ▲';
+  opacity: 1;
+  color: #2c3e50;
+}
+
+.sortable.desc::after {
+  content: ' ▼';
+  opacity: 1;
+  color: #2c3e50;
+}
