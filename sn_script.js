@@ -73,12 +73,14 @@ function renderResult(mode) {
     html += `
       <div class="table-row">
         <div class="table-col-value col-main">
-          <div style="font-weight:600;">${item.song}</div>
+          <!-- 曲名をリンクに変更 -->
+          <div style="font-weight:600;">
+            <a href="${item.url}" target="_blank" class="song-link">${item.song}</a>
+          </div>
           <div style="font-size:12px; color:#7a7a7a;">${item.channel}</div>
         </div>
         <div class="table-col-value col-sub">
-          <div style="font-weight:bold;">${keyDisp}</div>
-          <div style="margin-top:4px;"><a href="${item.url}" target="_blank" style="text-decoration:none;">📺</a></div>
+          <div style="font-weight:bold; color: #2c3e50;">${keyDisp}</div>
         </div>
       </div>
     `;
