@@ -69,20 +69,19 @@ html, body {
 
 /* ★詳細情報（日付とチャンネル名）のスタイル */
 /* 日付とチャンネル名のコンテナ（ガタつき防止） */
+/* 日付とチャンネル名（色やフォントはチャンネルページに準拠） */
 .sub-details {
   display: flex;
-  align-items: center; /* 垂直方向のセンター揃えでガタつき防止 */
-  gap: 12px;
+  align-items: baseline; /* 下のラインを揃えてガタつきを防止 */
+  gap: 12px;             /* スラッシュを使わず余白で区切る */
   margin-top: 4px;
-  line-height: 1.2;    /* 行高さを固定して安定させる */
 }
 
-/* 日付とチャンネル名共通（色は変えず、フォントを統一） */
 .sub-date, .sub-channel {
   font-size: 12px;
-  color: inherit;      /* 親要素の色（#888など）をそのまま引き継ぐ */
-  font-family: inherit; /* 特殊なフォントを使わず統一 */
-  vertical-align: middle;
+  color: #888;           /* チャンネルページの .upload-date と同じ色 */
+  font-family: inherit;  /* 特殊なフォントを使わず高さを統一 */
+  font-weight: normal;
 }
 
 /* キー・補足 */
