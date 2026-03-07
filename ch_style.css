@@ -9,23 +9,31 @@ html, body {
 .page-shell { width: 100%; max-width: 600px; margin: 0 auto; padding: 0 16px; }
 .page-title { text-align: center; margin: 24px 0 20px; font-size: 26px; font-weight: 700; color: #2c3e50; }
 
-/* --- 入力エリア --- */
+/* --- 入力・操作エリア --- */
 .input-box input {
   width: 100%; padding: 12px; font-size: 16px; margin-bottom: 12px;
   border: 1px solid #d0d0d0; border-radius: 8px; background: #fff; transition: 0.2s;
 }
 .input-box input:focus { border-color: #4a90e2; box-shadow: 0 0 0 3px rgba(74,144,226,0.2); outline: none; }
+
 .input-box button {
   width: 100%; padding: 12px; font-size: 17px; background: #4a90e2; color: white;
   border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s;
 }
 .input-box button:hover { background: #3b7ac4; }
 
-/* --- ラジオボタン --- */
+/* ラジオボタン (YouTube検索時のみ表示制御) */
 .video-type-box { display: flex; gap: 24px; margin: 8px 0 16px 4px; }
 .video-type-box label { display: flex; align-items: center; cursor: pointer; }
 .video-type-box input { margin: 0 8px 0 0; width: 16px; height: 16px; cursor: pointer; }
 .video-type-box span { font-size: 15px; }
+
+/* ソート用セレクトボックス */
+#sortSelect {
+  padding: 6px 10px; border-radius: 6px; border: 1px solid #d0d0d0;
+  font-size: 14px; background: #fff; cursor: pointer;
+}
+#sortSelect:focus { outline: none; border-color: #4a90e2; }
 
 /* --- 名前ボックス --- */
 .channel-name-box {
@@ -35,7 +43,7 @@ html, body {
 .channel-label { font-size: 14px; color: #7a7a7a; font-weight: 700; margin-bottom: 2px; }
 .channel-name { font-size: 18px; font-weight: 600; color: #2c3e50; margin: 0; }
 
-/* --- 結果テーブル --- */
+/* --- 結果表示ブロック --- */
 .card-block {
   background: #ffffff; border-radius: 14px; padding: 22px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08); margin-top: 25px;
@@ -48,39 +56,35 @@ html, body {
 .col-main { flex: 0 0 75% !important; text-align: left; }
 .col-sub { flex: 0 0 25% !important; text-align: center; }
 
-/* 曲名リンク (snと統一) */
+/* ヘッダーソート廃止（矢印を非表示） */
+.table-head .table-col { cursor: default; }
+.table-head .table-col::after { content: "" !important; }
+
+/* --- 曲名・日付・リンク --- */
+.title-date-container { display: flex; flex-direction: column; gap: 2px; }
+
 .table-col-value a {
   text-decoration: none; color: #2c3e50; font-weight: 600; transition: 0.2s; display: inline-block;
 }
 .table-col-value a:hover { color: #4a90e2; text-decoration: underline; }
 
-/* オク情報 */
+.upload-date { font-size: 11px; color: #888; font-weight: normal; }
 .octave-text { font-size: 12px; color: #4a90e2; }
-
-/* --- ソート矢印の出し分け (snと統一) --- */
-.sortable { cursor: pointer; transition: color 0.2s; user-select: none; }
-.sortable:hover { color: #4a90e2; }
-
-.sortable::after { content: ' ↕'; font-size: 10px; opacity: 0.5; }
-.sortable.asc::after { content: ' ▲'; opacity: 1; color: #2c3e50; }
-.sortable.desc::after { content: ' ▼'; opacity: 1; color: #2c3e50; }
 
 /* --- アニメーションとレスポンシブ --- */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
-@media (max-width: 480px) {
-  .page-title {
-    font-size: 22px;
-  }
-  .video-type-box {
-    gap: 20px;
-  }
 
-  /* ★追加：スマホの時だけ、リンクを最初から「青」にする */
+@media (max-width: 480px) {
+  .page-title { font-size: 22px; }
+  .video-type-box { gap: 20px; }
+  .upload-date { font-size: 10px; }
+
+  /* スマホ時はリンクを最初から青色にして視認性を上げる */
   .table-col-value a {
-    color: #4a90e2; /* ホバー時と同じ青色 */
-    text-decoration: underline; /* 下線を引くとさらに「リンク感」が出ます（お好みで） */
+    color: #4a90e2;
+    text-decoration: underline;
   }
 }
