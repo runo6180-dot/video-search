@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>歌い手楽曲検索</title>
-    <link rel="stylesheet" href="sn_style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Singer Lookup</title>
+  <link rel="stylesheet" href="sn_style.css">
 </head>
 <body>
-    <div class="page-shell">
-        <h1 class="page-title">歌い手楽曲検索</h1>
-        
-        <div class="input-box">
-            <input type="text" id="urlInput" placeholder="URLまたはハンドル(@...)を入力">
-            <button id="searchBtn">検索</button>
-        </div>
 
-        <div id="loading" style="display:none; text-align:center; padding:20px;">検索中…</div>
+<div class="page-shell">
+  <h1 class="page-title">歌い手別検索</h1>
 
-        <div id="resultArea">
-            <!-- ここにJSで歌い手名と結果が挿入されます -->
-        </div>
-    </div>
-    <script src="sn_script.js"></script>
+  <div class="input-box">
+    <input id="ytInput" type="text" placeholder="URL、ハンドル、または数字IDを入力">
+    <button id="ytSearchBtn">検索する</button>
+  </div>
+
+  <div id="resultArea"></div>
+</div>
+
+<script src="sn_script.js"></script>
 </body>
 </html>
