@@ -68,9 +68,22 @@ html, body {
 .table-col-value a:hover { color: #4a90e2; text-decoration: underline; }
 
 /* ★詳細情報（日付とチャンネル名）のスタイル */
-.sub-details { display: flex; justify-content: flex-start; gap: 12px; font-size: 12px; margin-top: 4px; }
-.sub-date { color: #888; font-family: monospace; } 
-.sub-channel { color: #4a90e2; font-weight: 500; } 
+/* 日付とチャンネル名のコンテナ（ガタつき防止） */
+.sub-details {
+  display: flex;
+  align-items: center; /* 垂直方向のセンター揃えでガタつき防止 */
+  gap: 12px;
+  margin-top: 4px;
+  line-height: 1.2;    /* 行高さを固定して安定させる */
+}
+
+/* 日付とチャンネル名共通（色は変えず、フォントを統一） */
+.sub-date, .sub-channel {
+  font-size: 12px;
+  color: inherit;      /* 親要素の色（#888など）をそのまま引き継ぐ */
+  font-family: inherit; /* 特殊なフォントを使わず統一 */
+  vertical-align: middle;
+}
 
 /* キー・補足 */
 .octave-text { font-size: 12px; color: #4a90e2; }
