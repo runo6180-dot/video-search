@@ -69,8 +69,8 @@ html, body {
 
 /* ★詳細情報（日付とチャンネル名）のスタイル */
 .sub-details { display: flex; justify-content: flex-start; gap: 12px; font-size: 12px; margin-top: 4px; }
-.sub-date { color: #888; font-family: monospace; } /* 日付は等幅で見やすく */
-.sub-channel { color: #4a90e2; font-weight: 500; } /* チャンネル名は
+.sub-date { color: #888; font-family: monospace; } 
+.sub-channel { color: #4a90e2; font-weight: 500; } 
 
 /* キー・補足 */
 .octave-text { font-size: 12px; color: #4a90e2; }
