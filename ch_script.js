@@ -1,5 +1,5 @@
-let allMatches = []; // GASから届いた全データを保持
-let currentDisplayType = 'youtube_normal'; // 現在表示中のタイプ
+let allMatches = []; 
+let currentDisplayType = 'youtube_normal';
 
 document.getElementById("ytSearchBtn").addEventListener("click", async () => {
   const url = document.getElementById("ytInput").value.trim();
@@ -8,53 +8,35 @@ document.getElementById("ytSearchBtn").addEventListener("click", async () => {
   const resultArea = document.getElementById("resultArea");
   resultArea.innerHTML = "検索中…";
 
-  // 統合されたAPI URL
+  // API URL（統合版）
   const apiURL = "https://script.google.com/macros/s/AKfycbxhXbZALDuljvuXMf_bmr9DA13PPJ2okiVREPGTYkOSb9a-5ogRGsr0PBMJ5GTz1dVT_A/exec";
 
   fetchJSONP(apiURL, url, (data) => {
-    const controls = document.getElementById("controlsContainer");
-    const typeBox = document.getElementById("videoTypeContainer");
-    const resultArea = document.getElementById("resultArea");
-  
     if (!data.matches || data.matches.length === 0) {
       resultArea.innerHTML = "<p>該当データが見つかりませんでした。</p>";
-      controls.style.display = "none";
       return;
     }
     
     allMatches = data.matches;
     const firstType = allMatches[0].type;
-  
-    // 全体の操作コンテナを表示
-    controls.style.display = "block";
-  
+
+    // 初回の表示タイプを決定
     if (firstType === 'nico') {
-      // ニコニコなら切り替えボタンだけ消す（ソートは残る）
-      typeBox.style.display = "none";
       currentDisplayType = 'nico';
     } else {
-      // YouTubeなら切り替えボタンを出す
-      typeBox.style.display = "flex";
-      currentDisplayType = document.querySelector('input[name="videoType"]:checked').value;
+      // YouTubeの場合、もし既にラジオボタンがあればその値、なければデフォルト'youtube_normal'
+      const checkedRadio = document.querySelector('input[name="videoType"]:checked');
+      currentDisplayType = checkedRadio ? checkedRadio.value : 'youtube_normal';
     }
-  
+
     renderResult();
   });
 });
-
-// YouTube用のラジオボタン切り替えイベント
-document.querySelectorAll('input[name="videoType"]').forEach(radio => {
-  radio.addEventListener('change', (e) => {
-    currentDisplayType = e.target.value;
-    renderResult();
-  });
-});
-
-// ソートセレクトボックスの変更イベント
-document.getElementById("sortSelect").addEventListener('change', renderResult);
 
 function renderResult() {
   const resultArea = document.getElementById("resultArea");
+  
+  // 現在のタイプでフィルタリング
   let displayData = allMatches.filter(m => m.type === currentDisplayType);
 
   if (displayData.length === 0) {
@@ -63,11 +45,12 @@ function renderResult() {
   }
 
   // 並び替え実行
-  const sortVal = document.getElementById("sortSelect").value;
+  const sortSelect = document.getElementById("sortSelect");
+  const sortVal = sortSelect ? sortSelect.value : 'furigana_asc';
   sortData(displayData, sortVal);
 
   const channelName = displayData[0].channelName || "(不明)";
-  const isNico = (currentDisplayType === 'nico');
+  const isNico = (allMatches[0].type === 'nico');
 
   // --- HTML組み立て ---
   // ① チャンネル名ボックス
@@ -78,18 +61,16 @@ function renderResult() {
     </div>
   `;
 
-  // ② 操作エリア（切り替えボタンとソート）
+  // ② 操作エリア（YouTubeボタンとソート）
   html += `
     <div id="controlsContainer" style="margin-bottom: 15px; padding: 0 4px;">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
         
-        <!-- YouTubeの時だけ出す切り替えボタン -->
         <div id="videoTypeContainer" class="video-type-box" style="display: ${isNico ? 'none' : 'flex'};">
           <label><input type="radio" name="videoType" value="youtube_normal" ${currentDisplayType==='youtube_normal'?'checked':''}><span>横動画</span></label>
           <label><input type="radio" name="videoType" value="youtube_shorts" ${currentDisplayType==='youtube_shorts'?'checked':''}><span>ショート</span></label>
         </div>
 
-        <!-- ソート選択（常に右側） -->
         <div id="sortContainer" style="margin-left: auto;">
           <select id="sortSelect">
             <option value="furigana_asc" ${sortVal==='furigana_asc'?'selected':''}>曲名順</option>
@@ -132,9 +113,12 @@ function renderResult() {
   html += `</div>`;
   resultArea.innerHTML = html;
 
-  // ラジオボタンとセレクトボックスにイベントを再バインド（中身を書き換えるため必要）
+  // 重要：HTMLを書き換えた後にイベントを再設定する
   document.querySelectorAll('input[name="videoType"]').forEach(r => {
-    r.addEventListener('change', e => { currentDisplayType = e.target.value; renderResult(); });
+    r.addEventListener('change', e => { 
+      currentDisplayType = e.target.value; 
+      renderResult(); 
+    });
   });
   document.getElementById("sortSelect").addEventListener('change', renderResult);
 }
@@ -142,13 +126,11 @@ function renderResult() {
 function sortData(data, sortVal) {
   const [key, order] = sortVal.split('_');
   const keyOrder = ["±0", "-1", "-2", "-3", "-4", "-5", "-6", "+1", "+2", "+3", "+4", "+5", "+6"];
-
   data.sort((a, b) => {
     let res = 0;
     if (key === 'furigana') {
       res = a.furigana.localeCompare(b.furigana, 'ja');
     } else if (key === 'date') {
-      // 日付の比較
       res = new Date(a.date || 0) - new Date(b.date || 0);
     } else if (key === 'key') {
       const idxA = keyOrder.indexOf(a.E);
