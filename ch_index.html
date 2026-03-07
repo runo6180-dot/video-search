@@ -11,35 +11,14 @@
 <div class="page-shell">
   <h1 class="page-title">チャンネル検索</h1>
 
-  <!-- 入力エリアはシンプルに -->
+  <!-- 入力エリア -->
   <div class="input-box">
     <input id="ytInput" type="text" placeholder="URLまたはチャンネル名を入力">
     <button id="ytSearchBtn">検索する</button>
   </div>
 
+  <!-- ★ここ：検索前は空っぽ。検索後にJSが「名前・ボタン・表」を順番にここに作ります -->
   <div id="resultArea"></div>
-  <!-- ★ここ：検索後の操作エリア（最初は隠しておく） -->
-  <div id="controlsContainer" style="display:none; margin-top: 20px;">
-    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
-      
-      <!-- YouTubeの時だけ JS で show() する切り替えボタン -->
-      <div id="videoTypeContainer" class="video-type-box" style="margin: 0;">
-        <label><input type="radio" name="videoType" value="youtube_normal" checked><span>横動画</span></label>
-        <label><input type="radio" name="videoType" value="youtube_shorts"><span>ショート</span></label>
-      </div>
-
-      <!-- ソート選択 -->
-      <div id="sortContainer">
-        <label style="font-size: 13px; color: #666;">並び替え：</label>
-        <select id="sortSelect" style="padding: 5px; border-radius: 5px; border: 1px solid #ddd; font-size: 14px;">
-          <option value="furigana_asc">曲名順</option>
-          <option value="date_desc">新しい順</option>
-          <option value="date_asc">古い順</option>
-          <option value="key_asc">キー順</option>
-        </select>
-      </div>
-    </div>
-  </div>
 </div>
 
 <script src="ch_script.js"></script>
