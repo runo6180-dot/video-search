@@ -131,7 +131,7 @@ function bindEvents() {
 }
 
 /**
- * ソートロジック
+ * ソートロジック（日付の安定版）
  */
 function sortData(data, sortVal) {
   const [key, order] = sortVal.split('_');
@@ -140,11 +140,12 @@ function sortData(data, sortVal) {
   data.sort((a, b) => {
     let res = 0;
     if (key === 'furigana') {
-      res = a.furigana.localeCompare(b.furigana, 'ja');
+      res = (a.furigana || "").localeCompare(b.furigana || "", 'ja');
     } else if (key === 'date') {
-      const dateA = a.date ? a.date.replace(/\//g, '-') : "0000-00-00";
-      const dateB = b.date ? b.date.replace(/\//g, '-') : "0000-00-00";
-      res = new Date(dateA) - new Date(dateB);
+      // 日付がない場合は古いものとして扱う
+      const dateA = a.date ? new Date(a.date.replace(/\//g, '-')) : new Date(0);
+      const dateB = b.date ? new Date(b.date.replace(/\//g, '-')) : new Date(0);
+      res = dateA - dateB;
     } else if (key === 'key') {
       const idxA = keyOrder.indexOf(a.key);
       const idxB = keyOrder.indexOf(b.key);
