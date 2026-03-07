@@ -1,183 +1,83 @@
+/* --- 基本レイアウト --- */
 html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background: #f0f2f5;
-  color: #333;
+  margin: 0; padding: 0; width: 100%; height: 100%; overflow-x: hidden;
+  box-sizing: border-box; font-family: "Helvetica Neue", Arial, sans-serif;
+  background: #f0f2f5; color: #333;
 }
-
 * { box-sizing: border-box; }
+.page-shell { width: 100%; max-width: 600px; margin: 0 auto; padding: 0 16px; min-height: 100vh; position: relative; }
+.page-title { text-align: center; margin: 24px 0 20px; font-size: 26px; font-weight: 700; color: #2c3e50; }
 
-.page-shell {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-.page-title {
-  text-align: center;
-  margin: 24px 0 20px;
-  font-size: 26px;
-  font-weight: 700;
-  color: #2c3e50;
-}
-
+/* --- 入力エリア --- */
+.input-box { margin-bottom: 20px; }
 .input-box input {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  margin-bottom: 12px;
-  border: 1px solid #d0d0d0;
-  border-radius: 8px;
-  background: #fff;
+  width: 100%; padding: 12px; font-size: 16px; margin-bottom: 12px;
+  border: 1px solid #d0d0d0; border-radius: 8px; background: #fff;
 }
-
 .input-box button {
-  width: 100%;
-  padding: 12px;
-  font-size: 17px;
-  background: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
+  width: 100%; padding: 12px; font-size: 17px; background: #4a90e2; color: white;
+  border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s;
 }
+.input-box button:hover { background: #3b7ac4; }
 
-.video-type-box {
-  display: flex;
-  gap: 24px;
-  margin: 8px 0 16px 0;
-  padding-left: 4px;
-}
-
-.video-type-box label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.video-type-box input[type="radio"] {
-  margin-right: 8px;
-}
-
-/* 歌い手名ボックス */
-.channel-label {
-  font-size: 14px;
+/* --- 検索中の表示（左寄せ） --- */
+.loading-msg {
+  text-align: left;
+  padding: 15px 4px;
+  font-size: 16px;
   color: #7a7a7a;
-  font-weight: 700;
-  display: block;
+  font-weight: 600;
+  animation: pulse 1.5s infinite;
 }
+@keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 
+/* --- 名前ボックス --- */
 .channel-name-box {
-  margin-top: 16px;
-  margin-bottom: 12px;
-  padding: 12px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  margin-top: 16px; margin-bottom: 12px; padding: 12px;
+  background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.channel-label { font-size: 14px; color: #7a7a7a; font-weight: 700; display: block; }
+.channel-name { font-size: 18px; font-weight: 600; color: #2c3e50; margin: 0; }
+
+/* --- 操作エリア --- */
+.video-type-box { display: flex; gap: 24px; margin: 8px 0 16px 0; padding-left: 4px; }
+.video-type-box label { display: flex; align-items: center; cursor: pointer; font-size: 15px; }
+.video-type-box input[type="radio"] { margin-right: 8px; }
+
+#sortSelect {
+  padding: 6px 10px; border-radius: 6px; border: 1px solid #ccc;
+  font-size: 14px; background: #fff; cursor: pointer;
 }
 
-.channel-name {
-  font-size: 18px;
-  font-weight: 600;
-  color: #2c3e50;
-  margin: 0;
-}
-
+/* --- 結果テーブル --- */
 .card-block {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  margin-top: 10px;
+  background: #ffffff; border-radius: 14px; padding: 22px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08); margin-top: 10px;
+  animation: fadeIn 0.25s ease-out;
 }
-
-.table-head {
-  display: flex;
-  font-weight: 700;
-  color: #7a7a7a;
-  border-bottom: 1px solid #e5e5e5;
-  padding-bottom: 8px;
-}
-
-.table-row {
-  display: flex;
-  padding: 12px 0;
-  border-bottom: 1px solid #efefef;
-  align-items: center;
-}
+.table-head { display: flex; border-bottom: 1px solid #e5e5e5; padding-bottom: 8px; color: #7a7a7a; font-weight: 700; font-size: 14px; }
+.table-row { display: flex; padding: 12px 0; border-bottom: 1px solid #efefef; align-items: center; transition: background 0.2s; }
+.table-row:hover { background: #fafafa; }
 
 .col-main { flex: 0 0 75%; text-align: left; }
 .col-sub { flex: 0 0 25%; text-align: center; }
 
-.octave-text {
-  font-size: 12px;
-  color: #4a90e2;
-}
+/* 曲名・詳細コンテナ */
+.title-info-container { display: flex; flex-direction: column; gap: 2px; }
+.table-col-value a { text-decoration: none; color: #2c3e50; font-weight: 600; font-size: 16px; transition: 0.2s; display: inline-block; }
+.table-col-value a:hover { color: #4a90e2; text-decoration: underline; }
 
-/* 曲名リンクのスタイル */
-.song-link {
-  text-decoration: none;
-  color: #2c3e50; /* 元の文字色に近く */
-  transition: color 0.2s;
-  display: inline-block; /* タップしやすく */
-}
+/* ★詳細情報（日付とチャンネル名）のスタイル */
+.sub-details { font-size: 12px; color: #888; margin-top: 2px; font-weight: normal; }
 
-.song-link:hover {
-  color: #4a90e2; /* ホバー時に青く */
-  text-decoration: underline;
-}
+/* キー・補足 */
+.octave-text { font-size: 12px; color: #4a90e2; }
 
-/* スマホ等でリンクだと分かりやすくしたい場合は、
-   最初から色を #4a90e2 にしても良いかもしれません。 */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-/* --- ソート矢印の出し分け (ch側と完全統一) --- */
-.sortable {
-  cursor: pointer;
-  transition: color 0.2s;
-  user-select: none;
-}
-.sortable:hover {
-  color: #4a90e2;
-}
-
-/* 矢印のフォントサイズを10pxに固定して統一 */
-.sortable::after {
-  content: ' ↕';
-  font-size: 10px; 
-  opacity: 0.5;
-  display: inline-block;
-  margin-left: 4px;
-}
-
-.sortable.asc::after {
-  content: ' ▲';
-  opacity: 1;
-  color: #2c3e50;
-}
-
-.sortable.desc::after {
-  content: ' ▼';
-  opacity: 1;
-  color: #2c3e50;
-}
-
+/* --- スマホ対応 --- */
 @media (max-width: 480px) {
-  .page-title {
-    font-size: 22px;
-  }
-  .video-type-box {
-    gap: 20px;
-  }
-
-  /* ★追加：スマホの時だけ、リンクを最初から「青」にする */
-  .table-col-value a {
-    color: #4a90e2; /* ホバー時と同じ青色 */
-    text-decoration: underline; /* 下線を引くとさらに「リンク感」が出ます（お好みで） */
-  }
+  .page-title { font-size: 22px; }
+  .video-type-box { gap: 20px; }
+  .table-col-value a { color: #4a90e2; text-decoration: underline; }
 }
