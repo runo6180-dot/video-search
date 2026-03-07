@@ -20,11 +20,11 @@ html, body {
 }
 .input-box button:hover { background: #3b7ac4; }
 
-/* --- 検索中の表示（左右中央寄せ） --- */
+/* --- 検索中の表示（左寄せに修正） --- */
 .loading-msg {
-  text-align: center;
-  padding: 30px 0;
-  font-size: 18px;
+  text-align: left;        /* 左寄せに変更 */
+  padding: 10px 4px;       /* 縦の余白を抑えて自然な位置に */
+  font-size: 16px;         /* 少しサイズを抑えてスッキリ */
   color: #7a7a7a;
   font-weight: 600;
   animation: pulse 1.5s infinite;
