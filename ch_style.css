@@ -5,76 +5,56 @@ html, body {
   background: #f0f2f5; color: #333;
 }
 * { box-sizing: border-box; }
-
 .page-shell { width: 100%; max-width: 600px; margin: 0 auto; padding: 0 16px; }
 .page-title { text-align: center; margin: 24px 0 20px; font-size: 26px; font-weight: 700; color: #2c3e50; }
 
 /* --- 入力エリア --- */
+.input-box { margin-bottom: 20px; }
 .input-box input {
   width: 100%; padding: 12px; font-size: 16px; margin-bottom: 12px;
-  border: 1px solid #d0d0d0; border-radius: 8px; background: #fff; transition: 0.2s;
+  border: 1px solid #d0d0d0; border-radius: 8px; background: #fff;
 }
-.input-box input:focus { border-color: #4a90e2; box-shadow: 0 0 0 3px rgba(74,144,226,0.2); outline: none; }
-
 .input-box button {
   width: 100%; padding: 12px; font-size: 17px; background: #4a90e2; color: white;
-  border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s;
-}
-.input-box button:hover { background: #3b7ac4; }
-
-/* --- 検索後に出る操作エリア（ボタン・ソート） --- */
-.video-type-box { display: flex; gap: 20px; align-items: center; }
-.video-type-box label { display: flex; align-items: center; cursor: pointer; }
-.video-type-box input { margin: 0 6px 0 0; width: 16px; height: 16px; }
-.video-type-box span { font-size: 14px; font-weight: 500; }
-
-#sortSelect {
-  padding: 6px 8px; border-radius: 6px; border: 1px solid #d0d0d0;
-  font-size: 13px; background: #fff; cursor: pointer; color: #555;
+  border: none; border-radius: 8px; font-weight: 600; cursor: pointer;
 }
 
 /* --- 名前ボックス --- */
 .channel-name-box {
-  margin-top: 16px; margin-bottom: 12px; padding: 12px;
+  margin-top: 10px; margin-bottom: 12px; padding: 12px;
   background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
-.channel-label { font-size: 13px; color: #7a7a7a; font-weight: 700; margin-bottom: 2px; }
+.channel-label { font-size: 12px; color: #7a7a7a; font-weight: 700; }
 .channel-name { font-size: 18px; font-weight: 600; color: #2c3e50; margin: 0; }
+
+/* --- 操作エリア (切り替え・ソート) --- */
+.video-type-box { display: flex; gap: 15px; }
+.video-type-box label { display: flex; align-items: center; cursor: pointer; font-size: 14px; }
+.video-type-box input { margin-right: 4px; }
+
+#sortSelect {
+  padding: 5px 8px; border-radius: 6px; border: 1px solid #ccc;
+  font-size: 13px; background: #fff; cursor: pointer;
+}
 
 /* --- 結果テーブル --- */
 .card-block {
   background: #ffffff; border-radius: 14px; padding: 20px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08); margin-top: 15px;
-  animation: fadeIn 0.25s ease-out;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08); animation: fadeIn 0.25s ease-out;
 }
 .table-head { display: flex; border-bottom: 1px solid #e5e5e5; padding-bottom: 8px; color: #7a7a7a; font-weight: 700; font-size: 14px; }
 .table-row { display: flex; padding: 12px 0; border-bottom: 1px solid #efefef; align-items: center; }
 
-/* 列幅（曲名 75% / キー 25%） */
-.col-main { flex: 0 0 75% !important; }
-.col-sub { flex: 0 0 25% !important; text-align: center; }
+.col-main { flex: 0 0 75%; }
+.col-sub { flex: 0 0 25%; text-align: center; }
 
-/* 曲名と日付のセット */
-.title-date-container { display: flex; flex-direction: column; gap: 3px; }
+.title-date-container { display: flex; flex-direction: column; gap: 2px; }
+.table-col-value a { text-decoration: none; color: #2c3e50; font-weight: 600; font-size: 15px; }
+.upload-date { font-size: 10px; color: #888; }
+.octave-text { font-size: 11px; color: #4a90e2; }
 
-.table-col-value a {
-  text-decoration: none; color: #2c3e50; font-weight: 600; font-size: 15px; transition: 0.2s;
-}
-.table-col-value a:hover { color: #4a90e2; text-decoration: underline; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-.upload-date { font-size: 11px; color: #888; font-weight: normal; }
-.octave-text { font-size: 12px; color: #4a90e2; font-weight: normal; }
-
-/* --- アニメーション --- */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- スマホ対応 --- */
 @media (max-width: 480px) {
-  .page-title { font-size: 22px; }
-  .upload-date { font-size: 10px; }
-  /* スマホはリンクを最初から青くして分かりやすくする */
   .table-col-value a { color: #4a90e2; text-decoration: underline; }
 }
