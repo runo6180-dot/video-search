@@ -22,7 +22,7 @@ html, body {
 
 /* --- 検索中の表示（画面中央） --- */
 .loading-msg {
-  display: flex; justify-content: center; align-items: center;
+  display: flex; justify-content: center; align-items: center; text-align: center;
   height: 200px; font-size: 18px; color: #7a7a7a; font-weight: 600;
   animation: pulse 1.5s infinite;
 }
