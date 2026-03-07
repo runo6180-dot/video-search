@@ -55,8 +55,6 @@ document.getElementById("sortSelect").addEventListener('change', renderResult);
 
 function renderResult() {
   const resultArea = document.getElementById("resultArea");
-  
-  // 現在のタイプ（横/ショート/ニコ）でフィルタリング
   let displayData = allMatches.filter(m => m.type === currentDisplayType);
 
   if (displayData.length === 0) {
@@ -64,18 +62,49 @@ function renderResult() {
     return;
   }
 
-  const channelName = displayData[0].channelName || "(不明)";
-  
-  // ソート実行
+  // 並び替え実行
   const sortVal = document.getElementById("sortSelect").value;
   sortData(displayData, sortVal);
 
+  const channelName = displayData[0].channelName || "(不明)";
+  const isNico = (currentDisplayType === 'nico');
+
+  // --- HTML組み立て ---
+  // ① チャンネル名ボックス
   let html = `
     <div class="channel-name-box">
       <span class="channel-label">チャンネル</span>
       <p class="channel-name">${channelName}</p>
     </div>
-    <div class="card-block">
+  `;
+
+  // ② 操作エリア（切り替えボタンとソート）
+  html += `
+    <div id="controlsContainer" style="margin-bottom: 15px; padding: 0 4px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        
+        <!-- YouTubeの時だけ出す切り替えボタン -->
+        <div id="videoTypeContainer" class="video-type-box" style="display: ${isNico ? 'none' : 'flex'};">
+          <label><input type="radio" name="videoType" value="youtube_normal" ${currentDisplayType==='youtube_normal'?'checked':''}><span>横動画</span></label>
+          <label><input type="radio" name="videoType" value="youtube_shorts" ${currentDisplayType==='youtube_shorts'?'checked':''}><span>ショート</span></label>
+        </div>
+
+        <!-- ソート選択（常に右側） -->
+        <div id="sortContainer" style="margin-left: auto;">
+          <select id="sortSelect">
+            <option value="furigana_asc" ${sortVal==='furigana_asc'?'selected':''}>曲名順</option>
+            <option value="date_desc" ${sortVal==='date_desc'?'selected':''}>新しい順</option>
+            <option value="date_asc" ${sortVal==='date_asc'?'selected':''}>古い順</option>
+            <option value="key_asc" ${sortVal==='key_asc'?'selected':''}>キー順</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // ③ 表本体
+  html += `
+    <div class="card-block" style="margin-top: 0;">
       <div class="table-head">
         <div class="table-col col-main">曲名</div>
         <div class="table-col col-sub">キー</div>
@@ -84,10 +113,7 @@ function renderResult() {
 
   displayData.forEach(item => {
     let keyDisplay = item.E || "-";
-    if (item.F && item.F.trim() !== "") {
-      keyDisplay += `<br><span class="octave-text">(${item.F})</span>`;
-    }
-
+    if (item.F) keyDisplay += `<br><span class="octave-text">(${item.F})</span>`;
     html += `
       <div class="table-row">
         <div class="table-col-value col-main">
@@ -105,6 +131,12 @@ function renderResult() {
 
   html += `</div>`;
   resultArea.innerHTML = html;
+
+  // ラジオボタンとセレクトボックスにイベントを再バインド（中身を書き換えるため必要）
+  document.querySelectorAll('input[name="videoType"]').forEach(r => {
+    r.addEventListener('change', e => { currentDisplayType = e.target.value; renderResult(); });
+  });
+  document.getElementById("sortSelect").addEventListener('change', renderResult);
 }
 
 function sortData(data, sortVal) {
