@@ -92,15 +92,15 @@ function renderResult() {
       keyDisplay += `<br><span class="octave-text">(${item.note})</span>`;
     }
     
-    // 「日付 / チャンネル名」の形式を作成
-    const detailText = [item.date, item.channel].filter(Boolean).join(" / ");
-    
     html += `
       <div class="table-row">
         <div class="table-col-value col-main">
           <div class="title-info-container">
-            <a href="${item.url}" target="_blank">${item.song}</a>
-            <div class="sub-details">${detailText}</div>
+            <a href="${item.url}" target="_blank" class="song-link">${item.song}</a>
+            <div class="sub-details">
+              <span class="sub-date">${item.date || ""}</span>
+              <span class="sub-channel">${item.channel || ""}</span>
+            </div>
           </div>
         </div>
         <div class="table-col-value col-sub">
