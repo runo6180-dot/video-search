@@ -12,27 +12,32 @@ document.getElementById("ytSearchBtn").addEventListener("click", async () => {
   const apiURL = "https://script.google.com/macros/s/AKfycbxhXbZALDuljvuXMf_bmr9DA13PPJ2okiVREPGTYkOSb9a-5ogRGsr0PBMJ5GTz1dVT_A/exec";
 
   fetchJSONP(apiURL, url, (data) => {
+    const controls = document.getElementById("controlsContainer");
+    const typeBox = document.getElementById("videoTypeContainer");
+    const resultArea = document.getElementById("resultArea");
+  
     if (!data.matches || data.matches.length === 0) {
       resultArea.innerHTML = "<p>該当データが見つかりませんでした。</p>";
-      document.getElementById("sortContainer").style.display = "none";
+      controls.style.display = "none";
       return;
     }
     
     allMatches = data.matches;
     const firstType = allMatches[0].type;
-
-    // ニコニコならラジオボタンを隠す、YouTubeなら出す
-    const typeBox = document.getElementById("videoTypeContainer");
+  
+    // 全体の操作コンテナを表示
+    controls.style.display = "block";
+  
     if (firstType === 'nico') {
+      // ニコニコなら切り替えボタンだけ消す（ソートは残る）
       typeBox.style.display = "none";
       currentDisplayType = 'nico';
     } else {
+      // YouTubeなら切り替えボタンを出す
       typeBox.style.display = "flex";
-      // 現在選択されているラジオボタンの値を取得
       currentDisplayType = document.querySelector('input[name="videoType"]:checked').value;
     }
-
-    document.getElementById("sortContainer").style.display = "block";
+  
     renderResult();
   });
 });
