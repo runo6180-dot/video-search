@@ -16,8 +16,9 @@ html, body {
 }
 .input-box button {
   width: 100%; padding: 12px; font-size: 17px; background: #4a90e2; color: white;
-  border: none; border-radius: 8px; font-weight: 600; cursor: pointer;
+  border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s;
 }
+.input-box button:hover { background: #3b7ac4; }
 
 /* --- 名前ボックス --- */
 .channel-name-box {
@@ -43,18 +44,37 @@ html, body {
   box-shadow: 0 6px 18px rgba(0,0,0,0.08); animation: fadeIn 0.25s ease-out;
 }
 .table-head { display: flex; border-bottom: 1px solid #e5e5e5; padding-bottom: 8px; color: #7a7a7a; font-weight: 700; font-size: 14px; }
-.table-row { display: flex; padding: 12px 0; border-bottom: 1px solid #efefef; align-items: center; }
+.table-row { display: flex; padding: 12px 0; border-bottom: 1px solid #efefef; align-items: center; transition: background 0.2s; }
+
+/* 行にカーソルを合わせた時の背景変化（お好みで） */
+.table-row:hover { background: #fafafa; }
 
 .col-main { flex: 0 0 75%; }
 .col-sub { flex: 0 0 25%; text-align: center; }
 
+/* --- 曲名リンクのホバー設定 --- */
 .title-date-container { display: flex; flex-direction: column; gap: 2px; }
-.table-col-value a { text-decoration: none; color: #2c3e50; font-weight: 600; font-size: 15px; }
+
+.table-col-value a { 
+  text-decoration: none; 
+  color: #2c3e50; 
+  font-weight: 600; 
+  font-size: 15px; 
+  transition: 0.2s; /* ← ここでふわっと色が変わるようにしています */
+}
+
+/* ★ここ：カーソルを合わせた時の色変更 */
+.table-col-value a:hover { 
+  color: #4a90e2; 
+  text-decoration: underline; 
+}
+
 .upload-date { font-size: 10px; color: #888; }
 .octave-text { font-size: 11px; color: #4a90e2; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 480px) {
+  /* スマホはカーソルがないので最初から青色にする設定 */
   .table-col-value a { color: #4a90e2; text-decoration: underline; }
 }
