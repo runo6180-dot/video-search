@@ -12,21 +12,31 @@
   <h1 class="page-title">チャンネル検索</h1>
 
   <div class="input-box">
-    <input id="ytInput" type="text" placeholder="YouTubeチャンネルURLを入力">
+    <input id="ytInput" type="text" placeholder="URLまたはチャンネル名を入力">
 
-    <div class="video-type-box">
+    <div id="videoTypeContainer" class="video-type-box">
       <label>
-        <input type="radio" name="videoType" value="normal" checked>
+        <input type="radio" name="videoType" value="youtube_normal" checked>
         <span>横動画</span>
       </label>
 
       <label>
-        <input type="radio" name="videoType" value="shorts">
+        <input type="radio" name="videoType" value="youtube_shorts">
         <span>ショート</span>
       </label>
     </div>
 
     <button id="ytSearchBtn">検索する</button>
+  </div>
+
+  <div id="sortContainer" style="display:none; margin: 20px 0 10px; text-align: right;">
+    <label style="font-size: 14px; color: #666;">並び替え：</label>
+    <select id="sortSelect" style="padding: 5px; border-radius: 5px; border: 1px solid #ddd;">
+      <option value="furigana_asc">曲名順 (昇順)</option>
+      <option value="date_desc">投稿日が新しい順</option>
+      <option value="date_asc">投稿日が古い順</option>
+      <option value="key_asc">キー順</option>
+    </select>
   </div>
 
   <div id="resultArea"></div>
