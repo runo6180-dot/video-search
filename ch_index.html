@@ -11,16 +11,21 @@
 <div class="page-shell">
   <h1 class="page-title">チャンネル検索</h1>
 
-  <!-- 入力エリア -->
+  <!-- 入力エリア：検索前はここだけが見える状態です -->
   <div class="input-box">
     <input id="ytInput" type="text" placeholder="URLまたはチャンネル名を入力">
     <button id="ytSearchBtn">検索する</button>
   </div>
 
-  <!-- ★ここ：検索前は空っぽ。検索後にJSが「名前・ボタン・表」を順番にここに作ります -->
+  <!-- 
+    ★重要ポイント
+    検索結果（名前、切り替えボタン、ソート、表）はすべて、
+    JavaScriptがこの「resultArea」の中に順番通りに組み立てて表示します。
+  -->
   <div id="resultArea"></div>
 </div>
 
+<!-- 以前お送りした「renderResult」関数が入ったJSファイルを読み込みます -->
 <script src="ch_script.js"></script>
 </body>
 </html>
