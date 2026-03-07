@@ -1,56 +1,45 @@
+// 確定したGASのURL
+const apiURL = "https://script.google.com/macros/s/AKfycbwfZXS6p4qw3qg1gnzFzWxw24jgMRkYvTFVe2JscyTevTsa3KXa10zlEYCTkB2OyIqwgg/exec";
+
 let allMatches = { normal: [], shorts: [] };
-let currentDisplayType = 'normal'; // 'normal' または 'shorts'
+let currentDisplayType = 'normal'; 
 let singerName = "";
 
-document.getElementById("ytSearchBtn").addEventListener("click", async () => {
+document.getElementById("ytSearchBtn").addEventListener("click", () => {
   const url = document.getElementById("ytInput").value.trim();
   if (!url) return;
 
   const resultArea = document.getElementById("resultArea");
-  // 検索中表示（sn_style.cssで左寄せに設定済み）
+  // 検索中表示（左寄せ）
   resultArea.innerHTML = `<div class="loading-msg">検索中…</div>`;
-
-  // デプロイしたGASのURL
-  const apiURL = "https://script.google.com/macros/s/AKfycbxiYCmg78ZGN-URe-LkyTFxGGLt2kr889VnfWIPGE99/exec";
 
   fetchJSONP(apiURL, url, (data) => {
     if (data.error || (!data.matches.normal.length && !data.matches.shorts.length)) {
-      resultArea.innerHTML = `<p>${data.error || "データが見つかりませんでした。"}</p>`;
+      resultArea.innerHTML = `<p style="padding:10px;">${data.error || "該当する歌い手または動画が見つかりませんでした。"}</p>`;
       return;
     }
     
     allMatches = data.matches;
     singerName = data.singerName;
 
-    // データがある方を初期表示にする
+    // 初期表示カテゴリの決定（動画がある方を優先）
     currentDisplayType = allMatches.normal.length > 0 ? 'normal' : 'shorts';
 
     renderResult();
   });
 });
 
+/**
+ * 結果描画メイン関数
+ */
 function renderResult() {
   const resultArea = document.getElementById("resultArea");
-  let displayData = (currentDisplayType === 'normal') ? allMatches.normal : allMatches.shorts;
-
-  if (displayData.length === 0) {
-    resultArea.innerHTML = `
-      <div class="channel-name-box">
-        <span class="channel-label">歌い手</span>
-        <p class="channel-name">${singerName}</p>
-      </div>
-      <p>このカテゴリの動画は見つかりませんでした。</p>
-    `;
-    return;
-  }
-
-  // 並び替え実行
   const sortSelect = document.getElementById("sortSelect");
   const sortVal = sortSelect ? sortSelect.value : 'furigana_asc';
-  sortData(displayData, sortVal);
 
-  // --- HTML組み立て ---
-  // ① 名前ボックス
+  let displayData = (currentDisplayType === 'normal') ? allMatches.normal : allMatches.shorts;
+
+  // 1. 名前ボックスの作成
   let html = `
     <div class="channel-name-box">
       <span class="channel-label">歌い手</span>
@@ -58,17 +47,15 @@ function renderResult() {
     </div>
   `;
 
-  // ② 操作エリア（切り替えとソート）
+  // 2. 操作エリア（切り替えボタンとソート）
   html += `
-    <div id="controlsContainer" style="margin-bottom: 15px; padding: 0 4px;">
+    <div style="margin-bottom: 15px;">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-        
-        <div id="videoTypeContainer" class="video-type-box">
+        <div class="video-type-box">
           <label><input type="radio" name="videoType" value="normal" ${currentDisplayType==='normal'?'checked':''}><span>横動画</span></label>
           <label><input type="radio" name="videoType" value="shorts" ${currentDisplayType==='shorts'?'checked':''}><span>ショート</span></label>
         </div>
-
-        <div id="sortContainer" style="margin-left: auto;">
+        <div>
           <select id="sortSelect">
             <option value="furigana_asc" ${sortVal==='furigana_asc'?'selected':''}>曲名順</option>
             <option value="date_desc" ${sortVal==='date_desc'?'selected':''}>新しい順</option>
@@ -80,9 +67,19 @@ function renderResult() {
     </div>
   `;
 
-  // ③ 表本体
+  if (displayData.length === 0) {
+    html += `<p style="padding:20px; color:#7a7a7a;">このカテゴリの動画はありません。</p>`;
+    resultArea.innerHTML = html;
+    bindEvents();
+    return;
+  }
+
+  // 並び替え実行
+  sortData(displayData, sortVal);
+
+  // 3. テーブル描画
   html += `
-    <div class="card-block" style="margin-top: 0;">
+    <div class="card-block">
       <div class="table-head">
         <div class="table-col col-main">曲名</div>
         <div class="table-col col-sub">キー</div>
@@ -91,14 +88,19 @@ function renderResult() {
 
   displayData.forEach(item => {
     let keyDisplay = item.key || "-";
-    if (item.note) keyDisplay += `<br><span class="octave-text">(${item.note})</span>`;
+    if (item.note) {
+      keyDisplay += `<br><span class="octave-text">(${item.note})</span>`;
+    }
+    
+    // 「日付 / チャンネル名」の形式を作成
+    const detailText = [item.date, item.channel].filter(Boolean).join(" / ");
     
     html += `
       <div class="table-row">
         <div class="table-col-value col-main">
-          <div class="title-date-container">
+          <div class="title-info-container">
             <a href="${item.url}" target="_blank">${item.song}</a>
-            <span class="upload-date">${item.date || ""}</span>
+            <div class="sub-details">${detailText}</div>
           </div>
         </div>
         <div class="table-col-value col-sub">
@@ -111,16 +113,26 @@ function renderResult() {
   html += `</div>`;
   resultArea.innerHTML = html;
 
-  // イベント再バインド
+  bindEvents();
+}
+
+/**
+ * イベント再バインド
+ */
+function bindEvents() {
   document.querySelectorAll('input[name="videoType"]').forEach(r => {
     r.addEventListener('change', e => { 
       currentDisplayType = e.target.value; 
       renderResult(); 
     });
   });
-  document.getElementById("sortSelect").addEventListener('change', renderResult);
+  const ss = document.getElementById("sortSelect");
+  if (ss) ss.addEventListener('change', renderResult);
 }
 
+/**
+ * ソートロジック
+ */
 function sortData(data, sortVal) {
   const [key, order] = sortVal.split('_');
   const keyOrder = ["±0", "-1", "-2", "-3", "-4", "-5", "-6", "+1", "+2", "+3", "+4", "+5", "+6"];
@@ -130,7 +142,6 @@ function sortData(data, sortVal) {
     if (key === 'furigana') {
       res = a.furigana.localeCompare(b.furigana, 'ja');
     } else if (key === 'date') {
-      // 日付文字列を比較
       const dateA = a.date ? a.date.replace(/\//g, '-') : "0000-00-00";
       const dateB = b.date ? b.date.replace(/\//g, '-') : "0000-00-00";
       res = new Date(dateA) - new Date(dateB);
@@ -143,6 +154,9 @@ function sortData(data, sortVal) {
   });
 }
 
+/**
+ * JSONP通信用
+ */
 function fetchJSONP(apiURL, url, callback) {
   const callbackName = "jsonp_cb_" + Math.random().toString(36).substr(2, 9);
   window[callbackName] = function(data) {
