@@ -6,25 +6,24 @@ document.getElementById("ytSearchBtn").addEventListener("click", async () => {
   if (!url) return;
 
   const resultArea = document.getElementById("resultArea");
-  resultArea.innerHTML = "検索中…";
+  
+  // ★修正ポイント：クラス名を付与してアニメーションを有効化
+  resultArea.innerHTML = `<div class="loading-msg">検索中…</div>`;
 
-  // API URL（統合版）
   const apiURL = "https://script.google.com/macros/s/AKfycbxhXbZALDuljvuXMf_bmr9DA13PPJ2okiVREPGTYkOSb9a-5ogRGsr0PBMJ5GTz1dVT_A/exec";
 
   fetchJSONP(apiURL, url, (data) => {
     if (!data.matches || data.matches.length === 0) {
-      resultArea.innerHTML = "<p>該当データが見つかりませんでした。</p>";
+      resultArea.innerHTML = "<p style='padding:10px;'>該当データが見つかりませんでした。</p>";
       return;
     }
     
     allMatches = data.matches;
     const firstType = allMatches[0].type;
 
-    // 初回の表示タイプを決定
     if (firstType === 'nico') {
       currentDisplayType = 'nico';
     } else {
-      // YouTubeの場合、もし既にラジオボタンがあればその値、なければデフォルト'youtube_normal'
       const checkedRadio = document.querySelector('input[name="videoType"]:checked');
       currentDisplayType = checkedRadio ? checkedRadio.value : 'youtube_normal';
     }
@@ -35,16 +34,13 @@ document.getElementById("ytSearchBtn").addEventListener("click", async () => {
 
 function renderResult() {
   const resultArea = document.getElementById("resultArea");
-  
-  // 現在のタイプでフィルタリング
   let displayData = allMatches.filter(m => m.type === currentDisplayType);
 
   if (displayData.length === 0) {
-    resultArea.innerHTML = "<p>このカテゴリの動画は見つかりませんでした。</p>";
+    resultArea.innerHTML = "<p style='padding:10px;'>このカテゴリの動画は見つかりませんでした。</p>";
     return;
   }
 
-  // 並び替え実行
   const sortSelect = document.getElementById("sortSelect");
   const sortVal = sortSelect ? sortSelect.value : 'furigana_asc';
   sortData(displayData, sortVal);
@@ -52,25 +48,17 @@ function renderResult() {
   const channelName = displayData[0].channelName || "(不明)";
   const isNico = (allMatches[0].type === 'nico');
 
-  // --- HTML組み立て ---
-  // ① チャンネル名ボックス
   let html = `
     <div class="channel-name-box">
       <span class="channel-label">チャンネル</span>
       <p class="channel-name">${channelName}</p>
     </div>
-  `;
-
-  // ② 操作エリア（YouTubeボタンとソート）
-  html += `
     <div id="controlsContainer" style="margin-bottom: 15px; padding: 0 4px;">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-        
         <div id="videoTypeContainer" class="video-type-box" style="display: ${isNico ? 'none' : 'flex'};">
           <label><input type="radio" name="videoType" value="youtube_normal" ${currentDisplayType==='youtube_normal'?'checked':''}><span>横動画</span></label>
           <label><input type="radio" name="videoType" value="youtube_shorts" ${currentDisplayType==='youtube_shorts'?'checked':''}><span>ショート</span></label>
         </div>
-
         <div id="sortContainer" style="margin-left: auto;">
           <select id="sortSelect">
             <option value="furigana_asc" ${sortVal==='furigana_asc'?'selected':''}>曲名順</option>
@@ -81,10 +69,6 @@ function renderResult() {
         </div>
       </div>
     </div>
-  `;
-
-  // ③ 表本体
-  html += `
     <div class="card-block" style="margin-top: 0;">
       <div class="table-head">
         <div class="table-col col-main">曲名</div>
@@ -113,7 +97,6 @@ function renderResult() {
   html += `</div>`;
   resultArea.innerHTML = html;
 
-  // 重要：HTMLを書き換えた後にイベントを再設定する
   document.querySelectorAll('input[name="videoType"]').forEach(r => {
     r.addEventListener('change', e => { 
       currentDisplayType = e.target.value; 
@@ -129,9 +112,12 @@ function sortData(data, sortVal) {
   data.sort((a, b) => {
     let res = 0;
     if (key === 'furigana') {
-      res = a.furigana.localeCompare(b.furigana, 'ja');
+      res = (a.furigana || "").localeCompare(b.furigana || "", 'ja');
     } else if (key === 'date') {
-      res = new Date(a.date || 0) - new Date(b.date || 0);
+      // ★修正：日付文字列をパースして安定させる
+      const dateA = a.date ? new Date(a.date.replace(/\//g, '-')) : new Date(0);
+      const dateB = b.date ? new Date(b.date.replace(/\//g, '-')) : new Date(0);
+      res = dateA - dateB;
     } else if (key === 'key') {
       const idxA = keyOrder.indexOf(a.E);
       const idxB = keyOrder.indexOf(b.E);
